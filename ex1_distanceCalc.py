@@ -53,32 +53,21 @@ def getDistance(loc1, loc2):
     return haversine(loc1, loc2)
 
 def calculateVariableCosts():
+    v = collection + production + supermarket
     header = ["Starting Location", "Ending Location", "Distance", "Driver Cost", "Gas Cost", "Total Cost"]
-    for c in collection:
-        for p in production:
-            dist = getDistance(c, p)
+    for v1 in v:
+        for v2 in v:
+            dist = getDistance(v1, v2)
             # 5km out of city and 5km into city
-            timeInCity = 10 / velCity
-            timeOutCity = (dist - 10) / velOutCity
+            timeInCity = 10 / velCity if dist >= 10 else 0
+            timeOutCity = (dist - 10) / velOutCity if dist >= 10 else 0
 
             driverCost = driverSalary * (timeInCity + timeOutCity)
             totGasCost = dist * gasPrice
-            data = [c[0], p[0], dist, driverCost, totGasCost, driverCost+totGasCost]
+            data = [v1[0], v2[0], dist, driverCost, totGasCost, driverCost+totGasCost]
             varCosts.append(data)
 
-    for p in production:
-        for s in supermarket:
-            dist = getDistance(p, s)
-            # 5km out of city and 5km into city
-            timeInCity = 10 / velCity
-            timeOutCity = (dist - 10) / velOutCity
 
-            driverCost = driverSalary * (timeInCity + timeOutCity)
-            totGasCost = dist * gasPrice
-            totalCost = driverCost+totGasCost
-            data = [p[0], s[0], dist, driverCost, totGasCost, driverCost+totGasCost]
-
-            varCosts.append(data)
     df = pd.DataFrame(varCosts, columns=header)
     df.to_excel('varCosts.xlsx', index=False)
 
