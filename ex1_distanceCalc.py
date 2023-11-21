@@ -82,13 +82,13 @@ def calculateFixedCosts():
     v = collection + production + supermarket
     header = ["Starting Location", "Ending Location", "Distance", "Fixed Truck Cost", "Depreciation Cost", "Total Cost"]
     for v1 in v:
-	for v2 in v:
-	    dist = getDistance(v1, v2)
-	    fixedTruck = fixedTruckCost
-	    depreciation = dist * depreciationCost
-	    totalCost = fixedTruck + depreciation
-	    data = [v1[0], v2[0], dist, fixedTruck, depreciation, totalCost]
-	    fixedCosts.append(data)
+    	for v2 in v:
+    	    dist = getDistance(v1, v2)
+    	    fixedTruck = fixedTruckCost
+    	    depreciation = dist * depreciationCost
+    	    totalCost = fixedTruck + depreciation
+    	    data = [v1[0], v2[0], dist, fixedTruck, depreciation, totalCost]
+    	    fixedCosts.append(data)
 
     df = pd.DataFrame(fixedCosts, columns=header)
     df.to_excel('fixedCosts.xlsx', index=False)
