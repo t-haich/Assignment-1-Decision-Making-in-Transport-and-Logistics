@@ -12,12 +12,19 @@ driverSalary = 20
 velCity = 25
 velOutCity = 60
 gasPrice = 0.5
+
+fixedTruckCost = 100
+depreciationCost = 1.0
+
 collection = []
 production = []
 supermarket = []
 
 #Variable costs
 varCosts = []
+
+#Fixed costs
+fixedCosts = []
 
 def convertDMStoDD(coord):
     parts = re.split('[°\'"]', coord)
@@ -71,6 +78,20 @@ def calculateVariableCosts():
     df = pd.DataFrame(varCosts, columns=header)
     df.to_excel('varCosts.xlsx', index=False)
 
+def calculateFixedCosts():
+    v = collection + production + supermarket
+    header = ["Starting Location", "Ending Location", "Distance", "Fixed Truck Cost", "Depreciation Cost", "Total Cost"]
+    for v1 in v:
+	for v2 in v:
+	    dist = getDistance(v1, v2)
+	    fixedTruck = fixedTruckCost
+	    depreciation = dist * depreciationCost
+	    totalCost = fixedTruck + depreciation
+	    data = [v1[0], v2[0], dist, fixedTruck, depreciation, totalCost]
+	    fixedCosts.append(data)
+
+    df = pd.DataFrame(fixedCosts, columns=header)
+    df.to_excel('fixedCosts.xlsx', index=False)
 
 
 if __name__ == "__main__":
@@ -79,4 +100,5 @@ if __name__ == "__main__":
     # if the file contains answers to multiple questions, you can comment them out (see example below)
     read_data()
     calculateVariableCosts()
+    calculateFixedCosts()
     
