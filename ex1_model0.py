@@ -74,12 +74,13 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     #usedConnectionsPtoS = model.addVars(superMarkts, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptos")
     
     
-    transportCtoP = model.addVars(collSites,prodFacs, name="trans ctop") #We're missing type
+    transportCtoP = model.addVars(collSites,prodFacs, vtype=GRB.INTEGER, name="trans ctop") #We're missing type
+    print(transportCtoP)
 
-    transportPtoS = model.addVars(prodFacs, superMarkts, name="trans ptos")
+    transportPtoS = model.addVars(prodFacs, superMarkts, vtype=GRB.INTEGER, name="trans ptos")
 
     # Update the model to include the new decision variables
-   # model.update()
+    model.update()
 
     # Set objective function
     model.modelSense = GRB.MINIMIZE
@@ -106,13 +107,13 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     
 
     # Add constraints
-    model.addConstrs((transportCtoP[1,4] <= supply[c] for c in collSites), "Supply")
+    model.addConstrs((transportCtoP.sum('*', c) <= supply[c] for c in collSites), "Supply")
     model.addConstrs((transportCtoP.sum(p,'*') == transportPtoS.sum('*', p) for p in prodFacs), "Capacity")
-    model.addConstrs((transportPtoS.sum('*', s) == demand[s - len(supply) - len(capacity)].sum() for s in superMarkts), "Demand")
+    model.addConstrs((transportPtoS.sum('*', s) == sum(demand[s - len(supply) - len(capacity)]) for s in superMarkts), "Demand")
 
-
-    model.addConstrs((transportCtoP[c,p - len(supply)] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
-    model.addConstrs((transportPtoS[p - len(supply), s - len(supply) - len(capacity)] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
+    model.addConstrs((transportCtoP[c,p] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
+    model.addConstrs((transportPtoS[p,s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
+    
     
     # Update the model to include the new constraints
     model.update()
