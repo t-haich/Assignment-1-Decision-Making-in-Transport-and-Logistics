@@ -9,12 +9,21 @@ Minimize
    + 181.144569862089 trans_ptos[3,9] + 932.4060498516822 trans_ptos[4,5]
    + 219.101152021662 trans_ptos[4,6] + 27.19943757228485 trans_ptos[4,7]
    + 168.7830253240778 trans_ptos[4,8] + 23.48786851831569 trans_ptos[4,9]
+   + 0 trans_ctop[0,0] + 0 trans_ctop[0,1] + 0 trans_ctop[0,2]
+   + 0 trans_ctop[1,0] + 0 trans_ctop[1,1] + 0 trans_ctop[1,2]
+   + 0 trans_ctop[2,0] + 0 trans_ctop[2,1] + 0 trans_ctop[2,2]
+   + 0 trans_ptos[3,3] + 0 trans_ptos[3,4] + 0 trans_ptos[4,3]
+   + 0 trans_ptos[4,4]
 Subject To
- Supply[0]: <= 150
- Supply[1]: <= 220
- Supply[2]: <= 130
- Capacity[3]: = 0
- Capacity[4]: = 0
+ Supply[0]: trans_ctop[0,3] + trans_ctop[0,4] <= 150
+ Supply[1]: trans_ctop[1,3] + trans_ctop[1,4] <= 220
+ Supply[2]: trans_ctop[2,3] + trans_ctop[2,4] <= 130
+ Capacity[3]: trans_ctop[0,3] + trans_ctop[1,3] + trans_ctop[2,3]
+   - trans_ptos[3,5] - trans_ptos[3,6] - trans_ptos[3,7] - trans_ptos[3,8]
+   - trans_ptos[3,9] = 0
+ Capacity[4]: trans_ctop[0,4] + trans_ctop[1,4] + trans_ctop[2,4]
+   - trans_ptos[4,5] - trans_ptos[4,6] - trans_ptos[4,7] - trans_ptos[4,8]
+   - trans_ptos[4,9] = 0
  Demand[5]: trans_ptos[3,5] + trans_ptos[4,5] = 130
  Demand[6]: trans_ptos[3,6] + trans_ptos[4,6] = 80
  Demand[7]: trans_ptos[3,7] + trans_ptos[4,7] = 110
@@ -42,4 +51,8 @@ Generals
  trans_ctop[2,3] trans_ctop[2,4] trans_ptos[3,5] trans_ptos[3,6]
  trans_ptos[3,7] trans_ptos[3,8] trans_ptos[3,9] trans_ptos[4,5]
  trans_ptos[4,6] trans_ptos[4,7] trans_ptos[4,8] trans_ptos[4,9]
+ trans_ctop[0,0] trans_ctop[0,1] trans_ctop[0,2] trans_ctop[1,0]
+ trans_ctop[1,1] trans_ctop[1,2] trans_ctop[2,0] trans_ctop[2,1]
+ trans_ctop[2,2] trans_ptos[3,3] trans_ptos[3,4] trans_ptos[4,3]
+ trans_ptos[4,4]
 End
