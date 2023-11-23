@@ -70,7 +70,10 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     usedConnectionsCtoP = model.addVars(prodFacs, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctop")
     usedConnectionsPtoS = model.addVars(superMarkts, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptos")
     
-    
+        # Transshipments
+    usedConnectionsCtoC = model.addVars(collSites, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctoc")
+    usedConnectionsPtoP = model.addVars(prodFacs, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptop")
+
     transportCtoP = model.addVars(prodFacs, collSites, obj=varCosts, name="trans ctop")
 
     transportPtoS = model.addVars(superMarkts, prodFacs, obj=varCosts, name="trans ptos")

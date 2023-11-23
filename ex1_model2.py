@@ -38,6 +38,9 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     prodFacs = []
     superMarkts = []
     capacity = []
+    capMilk = []
+    capYog = []
+    capCream = []
     supply = []
     demand = []
     varCosts = []
@@ -50,6 +53,14 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
         if "P" in d[0]:
             #prodFacs.append(d[0])
             capacity.append(d[2])
+            if "P1" in d[0]:
+                capMilk.append(d[2]*0.5)
+                capYog.append(d[2]*.2)
+                capCream.append(d[2]*0.3)
+            else:
+                capMilk.append(d[2]*0.6)
+                capYog.append(d[2]*.1)
+                capCream.append(d[2]*0.3)
         if "S" in d[0]:
             #superMarkts.append(d[0])
             demand.append([d[4], d[5], d[6]])
@@ -69,11 +80,16 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     # Define decision variables
     usedConnectionsCtoP = model.addVars(prodFacs, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctop")
     usedConnectionsPtoS = model.addVars(superMarkts, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptos")
-    
-    
+
+        # Transshipments
+    usedConnectionsCtoC = model.addVars(collSites, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctoc")
+    usedConnectionsPtoP = model.addVars(prodFacs, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptop")
+
     transportCtoP = model.addVars(prodFacs, collSites, obj=varCosts, name="trans ctop")
 
-    transportPtoS = model.addVars(superMarkts, prodFacs, obj=varCosts, name="trans ptos")
+    transportPtoSMilk = model.addVars(superMarkts, prodFacs, obj=varCosts, name="trans ptos milk")
+    transportPtoSYog = model.addVars(superMarkts, prodFacs, obj=varCosts, name="trans ptos yog")
+    transportPtoSCream = model.addVars(superMarkts, prodFacs, obj=varCosts, name="trans ptos cream")
 
     # Update the model to include the new decision variables
     model.update()
@@ -85,12 +101,17 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     # Add constraints
     model.addConstrs((transportCtoP.sum('*', c) <= supply[c] for c in collSites), "Supply")
     model.addConstrs((transportCtoP.sum('*', p) == transportPtoS.sum('*', p) for p in prodFacs), "Capacity")
-    model.addConstrs((transportPtoS.sum('*', s) == demand[s - len(supply) - len(capacity)].sum() for s in superMarkts), "Demand")
-
+        # Capacity-Demand split into three products: milk, yogurt, cream.
+    model.addConstrs((transportPtoSMilk.sum('*', s) == demand[s - len(supply) - len(capacity)][0] for s in superMarkts), "Demand Milk")
+    model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
+    model.addConstrs((transportPtoSCream.sum('*', s) == demand[s - len(supply) - len(capacity)][2] for s in superMarkts), "Demand Cream")
 
     model.addConstrs((transportCtoP[c,p - len(supply)] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
-    model.addConstrs((transportPtoS[p - len(supply), s - len(supply) - len(capacity)] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
-    
+    model.addConstrs((transportPtoSMilk[p - len(supply), s - len(supply) - len(capacity)] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Milk")
+    model.addConstrs((transportPtoSYog[p - len(supply), s - len(supply) - len(capacity)] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Yog")
+    model.addConstrs((transportPtoSCream[p - len(supply), s - len(supply) - len(capacity)] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Cream")
+
+
     # Update the model to include the new constraints
     model.update()
 
