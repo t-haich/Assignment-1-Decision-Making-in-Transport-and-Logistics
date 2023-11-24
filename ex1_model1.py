@@ -104,7 +104,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
         #Transshipment
     var_cost_expr_ctoc = gp.quicksum(transportCtoC[c, c] * varCosts[c][c] for c in collSites for c in collSites)
-    var_cost_expr_ptop = gp.quicksum(transportPtoP[p, p] * varCosts[p][p] for p in prodFacs for p in prodFacs)
+    var_cost_expr_ptop = gp.quicksum(transportPtoP[p1, p2] * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
 
     model.setObjective(var_cost_expr_ctop + var_cost_expr_ptos + var_cost_expr_ctoc + var_cost_expr_ptop , GRB.MINIMIZE)
 
