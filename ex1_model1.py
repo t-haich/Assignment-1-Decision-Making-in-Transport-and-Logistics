@@ -31,7 +31,7 @@ def listToMatrix(data, valueIndex):
 
 def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
-    model = gp.Model("ex1_model0")
+    model = gp.Model("ex1_model1")
 
     # Define sets and parameters
     collSites = []
@@ -125,7 +125,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.update()
 
         # Save the model to a file (optional)
-    model.write("ex1_model0.lp")
+    model.write("ex1_model1.lp")
 
     model.optimize()
 
