@@ -121,7 +121,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     var_cost_expr_ptos = gp.quicksum((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) * varCosts[p][s] for p in prodFacs for s in superMarkts)
 
         #Transshipment
-    var_cost_expr_ctoc = gp.quicksum(transportCtoC[c, c] * varCosts[c][c] for c in collSites for c in collSites)
+    var_cost_expr_ctoc = gp.quicksum(transportCtoC[c1, c2] * varCosts[c1][c2] for c1 in collSites for c2 in collSites)
     #var_cost_expr_ptop = gp.quicksum(transportPtoP[p1, p2] * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
     var_cost_expr_ptop = gp.quicksum((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
 

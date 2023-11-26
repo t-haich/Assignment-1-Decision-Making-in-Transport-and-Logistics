@@ -24,24 +24,25 @@ def build_model(timeC1, timeC2):
     V2 = []
     time_between1 = [] #omit i = j
 
-    for d in timeC1[1:]:
+    for d in timeC1:
         time = []
         for j in range(1, len(d)):
             time.append(d[j])
         time_between1.append(time)
 
-    for i in range(len(time_between1)):
-        time = []
-        for j in range(len(time_between1[i])):
-            if not i == j:
-                print(i, j, time_between1[i][j])
-                time.append(time_between1[i][j])
-        time_between1[i] = time
+    #for i in range(len(time_between1)):
+    #    time = []
+    #    for j in range(len(time_between1[i])):
+    #        if not i == j:
+    #            print(i, j, time_between1[i][j])
+    #            time.append(time_between1[i][j])
+    #    time_between1[i] = time
 
     time_between1 = np.array(time_between1)
     V1 = range(len(timeC1[0]) - 1)
     linksC1 = [(i,j) for i in V1 for j in V1 if not i == j]
-    print(time_between1[0][0])
+    print(time_between1)
+    print(linksC1)
     # Define decision variables
     transportC1 = model.addVars(linksC1, vtype=GRB.BINARY, name="transport")
     visited1 = model.addVars(V1, vtype=GRB.CONTINUOUS, name="visited")
