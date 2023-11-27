@@ -22,7 +22,8 @@ def build_model(timeC1, timeC2):
     V1 = []
     linksC2 = []
     V2 = []
-    time_between1 = [] #omit i = j
+    time_between1 = []
+    time_between2 = []
 
     for d in timeC1:
         time = []
@@ -30,22 +31,26 @@ def build_model(timeC1, timeC2):
             time.append(d[j])
         time_between1.append(time)
 
-    #for i in range(len(time_between1)):
-    #    time = []
-    #    for j in range(len(time_between1[i])):
-    #        if not i == j:
-    #            print(i, j, time_between1[i][j])
-    #            time.append(time_between1[i][j])
-    #    time_between1[i] = time
+    for d in timeC2:
+        time = []
+        for j in range(1, len(d)):
+            time.append(d[j])
+        time_between2.append(time)
 
     time_between1 = np.array(time_between1)
     V1 = range(len(timeC1[0]) - 1)
     linksC1 = [(i,j) for i in V1 for j in V1 if not i == j]
-    print(time_between1)
-    print(linksC1)
+
+    time_between2 = np.array(time_between2)
+    V2 = range(len(timeC2[0]) - 1)
+    linksC2 = [(i,j) for i in V2 for j in V2 if not i == j]
+
     # Define decision variables
-    transportC1 = model.addVars(linksC1, vtype=GRB.BINARY, name="transport")
-    visited1 = model.addVars(V1, vtype=GRB.CONTINUOUS, name="visited")
+    transportC1 = model.addVars(linksC1, vtype=GRB.BINARY, name="transport1")
+    visited1 = model.addVars(V1, vtype=GRB.CONTINUOUS, name="visited1")
+
+    transportC2 = model.addVars(linksC2, vtype=GRB.BINARY, name="transport2")
+    visited2 = model.addVars(V2, vtype=GRB.CONTINUOUS, name="visited2")
 
     # Update the model to include the new decision variables
     model.update()
@@ -54,25 +59,48 @@ def build_model(timeC1, timeC2):
     model.modelSense = GRB.MINIMIZE
 
     print(transportC1.select(0,1))
-    var_cost_expr = gp.quicksum(transportC1[i, j] * time_between1[i, j] for i, j in linksC1)
+    var_cost_expr1 = gp.quicksum(transportC1[i, j] * time_between1[i, j] for i, j in linksC1)
+    var_cost_expr2 = gp.quicksum(transportC2[i, j] * time_between2[i, j] for i, j in linksC2)
 
-    model.setObjective(var_cost_expr, GRB.MINIMIZE)
+    model.setObjective(var_cost_expr1 + var_cost_expr2, GRB.MINIMIZE)
 
     # Add constraints
-    model.addConstrs((gp.quicksum(transportC1[i, j] for i in V1 if i != j) == 1 for j in V1), "visitsC1ij")
-    model.addConstrs((gp.quicksum(transportC1[i, j] for j in V1 if i != j) == 1 for i in V1), "visitsC1ji")
-
+    model.addConstrs((gp.quicksum(transportC1[i, j] for i in V1 if not i == j) == 1 for j in V1), "visitsC1ij")
+    model.addConstrs((gp.quicksum(transportC1[i, j] for j in V1 if not i == j) == 1 for i in V1), "visitsC1ji")
+    model.addConstrs((gp.quicksum(transportC2[i, j] for i in V2 if not i == j) == 1 for j in V2), "visitsC2ij")
+    model.addConstrs((gp.quicksum(transportC2[i, j] for j in V2 if not i == j) == 1 for i in V2), "visitsC2ji")
 
     for i, j in linksC1:
         if not i == 0 and not j == 0:
             model.addConstr((visited1[i] - visited1[j] + len(V1)*transportC1[i, j] <= len(V1) - 1))
 
+    for i, j in linksC2:
+        if not i == 0 and not j == 0:
+            model.addConstr((visited2[i] - visited2[j] + len(V2)*transportC2[i, j] <= len(V2) - 1))
+
     model.addConstrs((transportC1[i, j] >= 0 for i, j in linksC1))
     model.addConstrs((visited1[i] >= 0 for i in V1))
 
+    model.addConstrs((transportC2[i, j] >= 0 for i, j in linksC2))
+    model.addConstrs((visited2[i] >= 0 for i in V2))
 
-    solve_model(model)
+    model.update()
 
+    model.optimize()
+    model.write("tsp_MTZ.lp")
+
+
+    for i, j in linksC1:
+        if not transportC1[i, j].x:
+            print ("({}, {}) from C1 was visited".format(i, j))
+        else:
+            print ("({}, {}) from C1 was not visited".format(i, j))
+
+    for i, j in linksC2:
+        if not transportC2[i, j].x:
+            print ("({}, {}) from C2 was visited".format(i, j))
+        else:
+            print ("({}, {}) from C2 was not visited".format(i, j))
 
 def solve_model(model):
     # Optimize the model

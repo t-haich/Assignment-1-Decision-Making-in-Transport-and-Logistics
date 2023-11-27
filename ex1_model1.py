@@ -114,6 +114,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     # Add constraints
     model.addConstrs((transportCtoP.sum(c, '*') <= supply[c] for c in collSites), "Supply") ### How do we account for increased supply due to transhipments???
+    
     model.addConstrs((transportCtoP.sum('*', p) == transportPtoS.sum(p, '*') for p in prodFacs), "Capacity")
     model.addConstrs((transportPtoS.sum('*', s) == sum(demand[s - len(supply) - len(capacity)]) for s in superMarkts), "Demand")
 
