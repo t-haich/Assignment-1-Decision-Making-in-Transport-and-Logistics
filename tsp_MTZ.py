@@ -47,7 +47,6 @@ def build_model(timeC1, timeC2):
     transportC1 = model.addVars(linksC1, vtype=GRB.BINARY, name="transport")
     visited1 = model.addVars(V1, vtype=GRB.CONTINUOUS, name="visited")
 
-
     # Update the model to include the new decision variables
     model.update()
 
@@ -60,8 +59,9 @@ def build_model(timeC1, timeC2):
     model.setObjective(var_cost_expr, GRB.MINIMIZE)
 
     # Add constraints
-    model.addConstrs((gp.quicksum(transportC1['*', j]) == 1 for j in V1), "visitsC1ij")
-    model.addConstrs((gp.quicksum(transportC1[i,'*']) == 1 for i in V1), "visitsC1ji")
+    model.addConstrs((gp.quicksum(transportC1[i, j] for i in V1 if i != j) == 1 for j in V1), "visitsC1ij")
+    model.addConstrs((gp.quicksum(transportC1[i, j] for j in V1 if i != j) == 1 for i in V1), "visitsC1ji")
+
 
     for i, j in linksC1:
         if not i == 0 and not j == 0:
