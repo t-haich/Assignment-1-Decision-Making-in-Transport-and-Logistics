@@ -33,16 +33,16 @@ Minimize
    + 219.101152021662 trans_ptos_cream[4,6]
    + 27.19943757228485 trans_ptos_cream[4,7]
    + 168.7830253240778 trans_ptos_cream[4,8]
-   + 23.48786851831569 trans_ptos_cream[4,9] + 0 trans_ctop[0,0]
-   + 0 trans_ctop[0,1] + 0 trans_ctop[0,2] + 0 trans_ctop[1,0]
-   + 0 trans_ctop[1,1] + 0 trans_ctop[1,2] + 0 trans_ctop[2,0]
-   + 0 trans_ctop[2,1] + 0 trans_ctop[2,2] + 0 trans_ptop_milk[3,3]
+   + 23.48786851831569 trans_ptos_cream[4,9]
+   + 37.2533249626332 trans_ctop[0,1] + 106.0707319723984 trans_ctop[0,2]
+   + 37.2533249626332 trans_ctop[1,0] + 77.75091601508339 trans_ctop[1,2]
+   + 106.0707319723984 trans_ctop[2,0] + 77.75091601508339 trans_ctop[2,1]
    + 175.8105615076099 trans_ptop_milk[3,4]
-   + 175.8105615076099 trans_ptop_milk[4,3] + 0 trans_ptop_milk[4,4]
-   + 0 trans_ptop_yog[3,3] + 175.8105615076099 trans_ptop_yog[3,4]
-   + 175.8105615076099 trans_ptop_yog[4,3] + 0 trans_ptop_yog[4,4]
-   + 0 trans_ptop_cream[3,3] + 175.8105615076099 trans_ptop_cream[3,4]
-   + 175.8105615076099 trans_ptop_cream[4,3] + 0 trans_ptop_cream[4,4]
+   + 175.8105615076099 trans_ptop_milk[4,3]
+   + 175.8105615076099 trans_ptop_yog[3,4]
+   + 175.8105615076099 trans_ptop_yog[4,3]
+   + 175.8105615076099 trans_ptop_cream[3,4]
+   + 175.8105615076099 trans_ptop_cream[4,3]
 Subject To
  Supply[0]: trans_ctop[0,3] + trans_ctop[0,4] <= 150
  Supply[1]: trans_ctop[1,3] + trans_ctop[1,4] <= 220
@@ -76,6 +76,10 @@ Subject To
  Demand_Cream[7]: trans_ptos_cream[3,7] + trans_ptos_cream[4,7] = 50
  Demand_Cream[8]: trans_ptos_cream[3,8] + trans_ptos_cream[4,8] = 10
  Demand_Cream[9]: trans_ptos_cream[3,9] + trans_ptos_cream[4,9] = 30
+ Capacity_limit[3]: trans_ctop[0,3] + trans_ctop[1,3] + trans_ctop[2,3]
+   <= 350
+ Capacity_limit[4]: trans_ctop[0,4] + trans_ctop[1,4] + trans_ctop[2,4]
+   <= 250
  Transport_C_to_P[0,3]: trans_ctop[0,3] >= 0
  Transport_C_to_P[0,4]: trans_ctop[0,4] >= 0
  Transport_C_to_P[1,3]: trans_ctop[1,3] >= 0
@@ -112,6 +116,27 @@ Subject To
  Transport_P_to_S_Cream[8,4]: trans_ptos_cream[4,8] >= 0
  Transport_P_to_S_Cream[9,3]: trans_ptos_cream[3,9] >= 0
  Transport_P_to_S_Cream[9,4]: trans_ptos_cream[4,9] >= 0
+ Transport_C_to_C[0,0]: trans_ctop[0,0] >= 0
+ Transport_C_to_C[0,1]: trans_ctop[0,1] >= 0
+ Transport_C_to_C[0,2]: trans_ctop[0,2] >= 0
+ Transport_C_to_C[1,0]: trans_ctop[1,0] >= 0
+ Transport_C_to_C[1,1]: trans_ctop[1,1] >= 0
+ Transport_C_to_C[1,2]: trans_ctop[1,2] >= 0
+ Transport_C_to_C[2,0]: trans_ctop[2,0] >= 0
+ Transport_C_to_C[2,1]: trans_ctop[2,1] >= 0
+ Transport_C_to_C[2,2]: trans_ctop[2,2] >= 0
+ Transport_P_to_S_Milk[3,3]: trans_ptop_milk[3,3] >= 0
+ Transport_P_to_S_Milk[3,4]: trans_ptop_milk[3,4] >= 0
+ Transport_P_to_S_Milk[4,3]: trans_ptop_milk[4,3] >= 0
+ Transport_P_to_S_Milk[4,4]: trans_ptop_milk[4,4] >= 0
+ Transport_P_to_S_Yog[3,3]: trans_ptop_yog[3,3] >= 0
+ Transport_P_to_S_Yog[3,4]: trans_ptop_yog[3,4] >= 0
+ Transport_P_to_S_Yog[4,3]: trans_ptop_yog[4,3] >= 0
+ Transport_P_to_S_Yog[4,4]: trans_ptop_yog[4,4] >= 0
+ Transport_P_to_S_Cream[3,3]: trans_ptop_cream[3,3] >= 0
+ Transport_P_to_S_Cream[3,4]: trans_ptop_cream[3,4] >= 0
+ Transport_P_to_S_Cream[4,3]: trans_ptop_cream[4,3] >= 0
+ Transport_P_to_S_Cream[4,4]: trans_ptop_cream[4,4] >= 0
 Bounds
 Generals
  trans_ctop[0,3] trans_ctop[0,4] trans_ctop[1,3] trans_ctop[1,4]

@@ -140,12 +140,19 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
     model.addConstrs((transportPtoSCream.sum('*', s) == demand[s - len(supply) - len(capacity)][2] for s in superMarkts), "Demand Cream")
 
+    model.addConstrs((transportCtoP.sum('*', p) <= capacity[p - len(supply)] for p in prodFacs), "Capacity limit")
+
     model.addConstrs((transportCtoP[c,p] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
 
     #model.addConstrs((transportPtoS[p,s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
     model.addConstrs((transportPtoSMilk[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Milk")
     model.addConstrs((transportPtoSYog[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Yog")
     model.addConstrs((transportPtoSCream[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Cream")
+        # TRansshipment
+    model.addConstrs((transportCtoC[c1,c2] >= 0 for c1 in collSites for c2 in collSites), "Transport C to C")
+    model.addConstrs((transportPtoPMilk[p1, p2] >= 0 for p1 in prodFacs for p2 in prodFacs), "Transport P to S Milk")
+    model.addConstrs((transportPtoPYog[p1, p2] >= 0 for p1 in prodFacs for p2 in prodFacs), "Transport P to S Yog")
+    model.addConstrs((transportPtoPCream[p1, p2] >= 0 for p1 in prodFacs for p2 in prodFacs), "Transport P to S Cream")
     
     # Update the model to include the new constraints
     model.update()

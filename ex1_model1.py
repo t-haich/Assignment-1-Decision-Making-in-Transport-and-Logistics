@@ -117,8 +117,12 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.addConstrs((transportCtoP.sum('*', p) == transportPtoS.sum(p, '*') for p in prodFacs), "Capacity")
     model.addConstrs((transportPtoS.sum('*', s) == sum(demand[s - len(supply) - len(capacity)]) for s in superMarkts), "Demand")
 
+    model.addConstrs((transportCtoP.sum('*', p) <= capacity[p - len(supply)] for p in prodFacs), "Capacity limit")
+
     model.addConstrs((transportCtoP[c,p] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
     model.addConstrs((transportPtoS[p,s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
+    model.addConstrs((transportCtoC[c1,c2] >= 0 for c1 in collSites for c2 in collSites), "Transport C to C")
+    model.addConstrs((transportPtoP[p1,p2] >= 0 for p1 in prodFacs for p2 in prodFacs), "Transport P to P")
     
     
     # Update the model to include the new constraints
