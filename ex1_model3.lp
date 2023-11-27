@@ -1,49 +1,72 @@
 \ Model ex1_model3
 \ LP format - for model browsing. Use MPS format to capture full model detail.
 Minimize
-  189.7150273948148 trans_ctop[0,3] + 65.67105632091048 trans_ctop[0,4]
-   + 153.9939861767614 trans_ctop[1,3] + 82.29241494609438 trans_ctop[1,4]
-   + 77.46695752092697 trans_ctop[2,3] + 165.5201548981831 trans_ctop[2,4]
-   + 1259.470562022982 trans_ptos_milk[3,5]
-   + 217.2519049273585 trans_ptos_milk[3,6]
-   + 201.9252002682607 trans_ptos_milk[3,7]
-   + 93.21251999224029 trans_ptos_milk[3,8]
-   + 220.1162553414024 trans_ptos_milk[3,9]
-   + 1084.066957329434 trans_ptos_milk[4,5]
-   + 263.7663248249113 trans_ptos_milk[4,6]
-   + 43.07935320812757 trans_ptos_milk[4,7]
-   + 205.9004791226895 trans_ptos_milk[4,8]
-   + 38.81104879606304 trans_ptos_milk[4,9]
-   + 1259.470562022982 trans_ptos_yog[3,5]
-   + 217.2519049273585 trans_ptos_yog[3,6]
-   + 201.9252002682607 trans_ptos_yog[3,7]
-   + 93.21251999224029 trans_ptos_yog[3,8]
-   + 220.1162553414024 trans_ptos_yog[3,9]
-   + 1084.066957329434 trans_ptos_yog[4,5]
-   + 263.7663248249113 trans_ptos_yog[4,6]
-   + 43.07935320812757 trans_ptos_yog[4,7]
-   + 205.9004791226895 trans_ptos_yog[4,8]
-   + 38.81104879606304 trans_ptos_yog[4,9]
-   + 1259.470562022982 trans_ptos_cream[3,5]
-   + 217.2519049273585 trans_ptos_cream[3,6]
-   + 201.9252002682607 trans_ptos_cream[3,7]
-   + 93.21251999224029 trans_ptos_cream[3,8]
-   + 220.1162553414024 trans_ptos_cream[3,9]
-   + 1084.066957329434 trans_ptos_cream[4,5]
-   + 263.7663248249113 trans_ptos_cream[4,6]
-   + 43.07935320812757 trans_ptos_cream[4,7]
-   + 205.9004791226895 trans_ptos_cream[4,8]
-   + 38.81104879606304 trans_ptos_cream[4,9] + 12.5 trans_ctop[0,0]
-   + 54.64132370702818 trans_ctop[0,1] + 133.7813417682582 trans_ctop[0,2]
-   + 54.64132370702818 trans_ctop[1,0] + 12.5 trans_ctop[1,1]
-   + 101.2135534173459 trans_ctop[1,2] + 133.7813417682582 trans_ctop[2,0]
-   + 101.2135534173459 trans_ctop[2,1] + 12.5 trans_ctop[2,2]
-   + 12.5 trans_ptop_milk[3,3] + 213.9821457337514 trans_ptop_milk[3,4]
-   + 213.9821457337514 trans_ptop_milk[4,3] + 12.5 trans_ptop_milk[4,4]
-   + 12.5 trans_ptop_yog[3,3] + 213.9821457337514 trans_ptop_yog[3,4]
-   + 213.9821457337514 trans_ptop_yog[4,3] + 12.5 trans_ptop_yog[4,4]
-   + 12.5 trans_ptop_cream[3,3] + 213.9821457337514 trans_ptop_cream[3,4]
-   + 213.9821457337514 trans_ptop_cream[4,3] + 12.5 trans_ptop_cream[4,4]
+  154.708719473752 trans_ctop[0,3] + 46.84439680079171 trans_ctop[0,4]
+   + 123.6469445015316 trans_ctop[1,3] + 61.29775212703859 trans_ctop[1,4]
+   + 57.10170219211041 trans_ctop[2,3] + 133.6696999114636 trans_ctop[2,4]
+   + 1084.930923498245 trans_ptos_milk[3,5]
+   + 178.6538303716161 trans_ptos_milk[3,6]
+   + 165.3262611028354 trans_ptos_milk[3,7]
+   + 70.79349564542635 trans_ptos_milk[3,8]
+   + 181.144569862089 trans_ptos_milk[3,9]
+   + 932.4060498516822 trans_ptos_milk[4,5]
+   + 219.101152021662 trans_ptos_milk[4,6]
+   + 27.19943757228485 trans_ptos_milk[4,7]
+   + 168.7830253240778 trans_ptos_milk[4,8]
+   + 23.48786851831569 trans_ptos_milk[4,9]
+   + 1084.930923498245 trans_ptos_yog[3,5]
+   + 178.6538303716161 trans_ptos_yog[3,6]
+   + 165.3262611028354 trans_ptos_yog[3,7]
+   + 70.79349564542635 trans_ptos_yog[3,8]
+   + 181.144569862089 trans_ptos_yog[3,9]
+   + 932.4060498516822 trans_ptos_yog[4,5]
+   + 219.101152021662 trans_ptos_yog[4,6]
+   + 27.19943757228485 trans_ptos_yog[4,7]
+   + 168.7830253240778 trans_ptos_yog[4,8]
+   + 23.48786851831569 trans_ptos_yog[4,9]
+   + 1084.930923498245 trans_ptos_cream[3,5]
+   + 178.6538303716161 trans_ptos_cream[3,6]
+   + 165.3262611028354 trans_ptos_cream[3,7]
+   + 70.79349564542635 trans_ptos_cream[3,8]
+   + 181.144569862089 trans_ptos_cream[3,9]
+   + 932.4060498516822 trans_ptos_cream[4,5]
+   + 219.101152021662 trans_ptos_cream[4,6]
+   + 27.19943757228485 trans_ptos_cream[4,7]
+   + 168.7830253240778 trans_ptos_cream[4,8]
+   + 23.48786851831569 trans_ptos_cream[4,9]
+   + 37.2533249626332 trans_ctop[0,1] + 106.0707319723984 trans_ctop[0,2]
+   + 37.2533249626332 trans_ctop[1,0] + 77.75091601508339 trans_ctop[1,2]
+   + 106.0707319723984 trans_ctop[2,0] + 77.75091601508339 trans_ctop[2,1]
+   + 175.8105615076099 trans_ptop_milk[3,4]
+   + 175.8105615076099 trans_ptop_milk[4,3]
+   + 175.8105615076099 trans_ptop_yog[3,4]
+   + 175.8105615076099 trans_ptop_yog[4,3]
+   + 175.8105615076099 trans_ptop_cream[3,4]
+   + 175.8105615076099 trans_ptop_cream[4,3] + 100 trucks_ctoc[0,0]
+   + 139.1039899551598 trucks_ctoc[0,1]
+   + 221.6848783668781 trucks_ctoc[0,2]
+   + 139.1039899551598 trucks_ctoc[1,0] + 100 trucks_ctoc[1,1]
+   + 187.7010992181001 trucks_ctoc[1,2]
+   + 221.6848783668781 trucks_ctoc[2,0]
+   + 187.7010992181001 trucks_ctoc[2,1] + 100 trucks_ctoc[2,2]
+   + 280.0504633685024 trucks_ctop[0,3]
+   + 150.6132761609501 trucks_ctop[0,4]
+   + 242.7763334018379 trucks_ctop[1,3]
+   + 167.9573025524463 trucks_ctop[1,4]
+   + 162.9220426305325 trucks_ctop[2,3]
+   + 254.8036398937564 trucks_ctop[2,4] + 100 trucks_ptop[3,3]
+   + 305.3726738091319 trucks_ptop[3,4]
+   + 305.3726738091319 trucks_ptop[4,3] + 100 trucks_ptop[4,4]
+   + 1396.317108197894 trucks_ptos[3,5]
+   + 308.7845964459393 trucks_ptos[3,6]
+   + 292.7915133234025 trucks_ptos[3,7]
+   + 179.3521947745116 trucks_ptos[3,8]
+   + 311.7734838345068 trucks_ptos[3,9]
+   + 1213.287259822019 trucks_ptos[4,5]
+   + 357.3213824259944 trucks_ptos[4,6]
+   + 127.0393250867418 trucks_ptos[4,7]
+   + 296.9396303888934 trucks_ptos[4,8]
+   + 122.5854422219788 trucks_ptos[4,9]
 Subject To
  Supply[0]: trans_ctop[0,3] + trans_ctop[0,4] <= 150
  Supply[1]: trans_ctop[1,3] + trans_ctop[1,4] <= 220
@@ -113,6 +136,49 @@ Subject To
  Transport_P_to_S_Cream[8,4]: trans_ptos_cream[4,8] >= 0
  Transport_P_to_S_Cream[9,3]: trans_ptos_cream[3,9] >= 0
  Transport_P_to_S_Cream[9,4]: trans_ptos_cream[4,9] >= 0
+ R56: - trans_ctop[0,0] + 8 trucks_ctoc[0,0] >= 0
+ R57: - trans_ctop[0,1] + 8 trucks_ctoc[0,1] >= 0
+ R58: - trans_ctop[0,2] + 8 trucks_ctoc[0,2] >= 0
+ R59: - trans_ctop[1,0] + 8 trucks_ctoc[1,0] >= 0
+ R60: - trans_ctop[1,1] + 8 trucks_ctoc[1,1] >= 0
+ R61: - trans_ctop[1,2] + 8 trucks_ctoc[1,2] >= 0
+ R62: - trans_ctop[2,0] + 8 trucks_ctoc[2,0] >= 0
+ R63: - trans_ctop[2,1] + 8 trucks_ctoc[2,1] >= 0
+ R64: - trans_ctop[2,2] + 8 trucks_ctoc[2,2] >= 0
+ R65: - trans_ctop[0,3] + 8 trucks_ctop[0,3] >= 0
+ R66: - trans_ctop[0,4] + 8 trucks_ctop[0,4] >= 0
+ R67: - trans_ctop[1,3] + 8 trucks_ctop[1,3] >= 0
+ R68: - trans_ctop[1,4] + 8 trucks_ctop[1,4] >= 0
+ R69: - trans_ctop[2,3] + 8 trucks_ctop[2,3] >= 0
+ R70: - trans_ctop[2,4] + 8 trucks_ctop[2,4] >= 0
+ R71: - trans_ptop_milk[3,3] - trans_ptop_yog[3,3] - trans_ptop_cream[3,3]
+   + 8 trucks_ptop[3,3] >= 0
+ R72: - trans_ptop_milk[3,4] - trans_ptop_yog[3,4] - trans_ptop_cream[3,4]
+   + 8 trucks_ptop[3,4] >= 0
+ R73: - trans_ptop_milk[4,3] - trans_ptop_yog[4,3] - trans_ptop_cream[4,3]
+   + 8 trucks_ptop[4,3] >= 0
+ R74: - trans_ptop_milk[4,4] - trans_ptop_yog[4,4] - trans_ptop_cream[4,4]
+   + 8 trucks_ptop[4,4] >= 0
+ R75: - trans_ptos_milk[3,5] - trans_ptos_yog[3,5] - trans_ptos_cream[3,5]
+   + 8 trucks_ptos[3,5] >= 0
+ R76: - trans_ptos_milk[3,6] - trans_ptos_yog[3,6] - trans_ptos_cream[3,6]
+   + 8 trucks_ptos[3,6] >= 0
+ R77: - trans_ptos_milk[3,7] - trans_ptos_yog[3,7] - trans_ptos_cream[3,7]
+   + 8 trucks_ptos[3,7] >= 0
+ R78: - trans_ptos_milk[3,8] - trans_ptos_yog[3,8] - trans_ptos_cream[3,8]
+   + 8 trucks_ptos[3,8] >= 0
+ R79: - trans_ptos_milk[3,9] - trans_ptos_yog[3,9] - trans_ptos_cream[3,9]
+   + 8 trucks_ptos[3,9] >= 0
+ R80: - trans_ptos_milk[4,5] - trans_ptos_yog[4,5] - trans_ptos_cream[4,5]
+   + 8 trucks_ptos[4,5] >= 0
+ R81: - trans_ptos_milk[4,6] - trans_ptos_yog[4,6] - trans_ptos_cream[4,6]
+   + 8 trucks_ptos[4,6] >= 0
+ R82: - trans_ptos_milk[4,7] - trans_ptos_yog[4,7] - trans_ptos_cream[4,7]
+   + 8 trucks_ptos[4,7] >= 0
+ R83: - trans_ptos_milk[4,8] - trans_ptos_yog[4,8] - trans_ptos_cream[4,8]
+   + 8 trucks_ptos[4,8] >= 0
+ R84: - trans_ptos_milk[4,9] - trans_ptos_yog[4,9] - trans_ptos_cream[4,9]
+   + 8 trucks_ptos[4,9] >= 0
 Bounds
 Generals
  trans_ctop[0,3] trans_ctop[0,4] trans_ctop[1,3] trans_ctop[1,4]
@@ -132,5 +198,12 @@ Generals
  trans_ptop_milk[4,3] trans_ptop_milk[4,4] trans_ptop_yog[3,3]
  trans_ptop_yog[3,4] trans_ptop_yog[4,3] trans_ptop_yog[4,4]
  trans_ptop_cream[3,3] trans_ptop_cream[3,4] trans_ptop_cream[4,3]
- trans_ptop_cream[4,4]
+ trans_ptop_cream[4,4] trucks_ctoc[0,0] trucks_ctoc[0,1] trucks_ctoc[0,2]
+ trucks_ctoc[1,0] trucks_ctoc[1,1] trucks_ctoc[1,2] trucks_ctoc[2,0]
+ trucks_ctoc[2,1] trucks_ctoc[2,2] trucks_ctop[0,3] trucks_ctop[0,4]
+ trucks_ctop[1,3] trucks_ctop[1,4] trucks_ctop[2,3] trucks_ctop[2,4]
+ trucks_ptop[3,3] trucks_ptop[3,4] trucks_ptop[4,3] trucks_ptop[4,4]
+ trucks_ptos[3,5] trucks_ptos[3,6] trucks_ptos[3,7] trucks_ptos[3,8]
+ trucks_ptos[3,9] trucks_ptos[4,5] trucks_ptos[4,6] trucks_ptos[4,7]
+ trucks_ptos[4,8] trucks_ptos[4,9]
 End

@@ -101,6 +101,12 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     transportPtoPYog = model.addVars(prodFacs, prodFacs, vtype=GRB.INTEGER, name="trans ptop yog")
     transportPtoPCream = model.addVars(prodFacs, prodFacs, vtype=GRB.INTEGER, name="trans ptop cream")
 
+        # Trucks
+    trucksCtoC = model.addVars(collSites, collSites, vtype=GRB.INTEGER, name="trucks ctoc")
+    trucksCtoP = model.addVars(collSites, prodFacs, vtype=GRB.INTEGER, name="trucks ctop")
+    trucksPtoP = model.addVars(prodFacs, prodFacs, vtype=GRB.INTEGER, name="trucks ptop")
+    trucksPtoS = model.addVars(prodFacs, superMarkts, vtype=GRB.INTEGER, name="trucks ptos")
+
     # Update the model to include the new decision variables
     model.update()
 
@@ -117,14 +123,14 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     #fixed_cost_expr_ctop = gp.quicksum(usedConnectionsCtoP[p, c] * fixedCosts[p][c] for p in prodFacs for c in collSites)
     #fixed_cost_expr_ptos = gp.quicksum(usedConnectionsPtoS[s, p] * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
 
-    var_cost_expr_ctop = gp.quicksum(transportCtoP[c, p] * varCosts[c][p] + (transportCtoP[c, p] / 8.0) * fixedCosts[c][p] for p in prodFacs for c in collSites)
+    var_cost_expr_ctop = gp.quicksum(transportCtoP[c, p] * varCosts[c][p] + trucksCtoP[c, p] * fixedCosts[c][p] for p in prodFacs for c in collSites)
     #var_cost_expr_ptos = gp.quicksum(transportPtoS[p, s] * varCosts[p][s] for p in prodFacs for s in superMarkts)
-    var_cost_expr_ptos = gp.quicksum((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) * varCosts[p][s] + ((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) / 8) * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
+    var_cost_expr_ptos = gp.quicksum((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) * varCosts[p][s] + trucksPtoS[p, s] * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
 
         #Transshipment
-    var_cost_expr_ctoc = gp.quicksum(transportCtoC[c1, c2] * varCosts[c1][c2] + (transportCtoC[c1, c2] / 8) * fixedCosts[c1][c2] for c1 in collSites for c2 in collSites)
+    var_cost_expr_ctoc = gp.quicksum(transportCtoC[c1, c2] * varCosts[c1][c2] + trucksCtoC[c1, c2] * fixedCosts[c1][c2] for c1 in collSites for c2 in collSites)
     #var_cost_expr_ptop = gp.quicksum(transportPtoP[p1, p2] * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
-    var_cost_expr_ptop = gp.quicksum((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) * varCosts[p1][p2] + ((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) / 8) * fixedCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
+    var_cost_expr_ptop = gp.quicksum((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) * varCosts[p1][p2] + trucksPtoP[p1, p2] * fixedCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
 
     model.setObjective(var_cost_expr_ctop + var_cost_expr_ptos + var_cost_expr_ctoc + var_cost_expr_ptop , GRB.MINIMIZE)
 
@@ -147,6 +153,12 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.addConstrs((transportPtoSMilk[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Milk")
     model.addConstrs((transportPtoSYog[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Yog")
     model.addConstrs((transportPtoSCream[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Cream")
+
+        # Trucks
+    model.addConstrs(trucksCtoC[c1, c2] * 8 >= transportCtoC[c1, c2] for c1 in collSites for c2 in collSites)
+    model.addConstrs(trucksCtoP[c, p] * 8 >= transportCtoP[c, p] for c in collSites for p in prodFacs)
+    model.addConstrs(trucksPtoP[p1, p2] * 8 >= (transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) for p1 in prodFacs for p2 in prodFacs)
+    model.addConstrs(trucksPtoS[p, s] * 8 >= (transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) for p in prodFacs for s in superMarkts)
     
     # Update the model to include the new constraints
     model.update()
