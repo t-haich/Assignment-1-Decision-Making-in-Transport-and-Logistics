@@ -68,9 +68,9 @@ Minimize
    + 296.9396303888934 trucks_ptos[4,8]
    + 122.5854422219788 trucks_ptos[4,9]
 Subject To
- Supply[0]: trans_ctop[0,3] + trans_ctop[0,4] <= 150
- Supply[1]: trans_ctop[1,3] + trans_ctop[1,4] <= 220
- Supply[2]: trans_ctop[2,3] + trans_ctop[2,4] <= 130
+ Supply[0]: trans_ctop[0,3] + trans_ctop[0,4] <= 165
+ Supply[1]: trans_ctop[1,3] + trans_ctop[1,4] <= 245
+ Supply[2]: trans_ctop[2,3] + trans_ctop[2,4] <= 140
  Capacity[3]: trans_ctop[0,3] + trans_ctop[1,3] + trans_ctop[2,3]
    - trans_ptos_milk[3,5] - trans_ptos_milk[3,6] - trans_ptos_milk[3,7]
    - trans_ptos_milk[3,8] - trans_ptos_milk[3,9] - trans_ptos_yog[3,5]

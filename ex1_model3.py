@@ -175,23 +175,25 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     # Call functions to output / print solutions if necessary
 
-    for c1 in collSites:
-        for c2 in collSites:
-            print("{} shipped from collection {} to collection {}".format(transportCtoC[c1,c2].x, c1, c2))
+    if not model.status == gp.GRB.INFEASIBLE:
+
+        for c1 in collSites:
+            for c2 in collSites:
+                print("{} shipped from collection {} to collection {}".format(transportCtoC[c1,c2].x, c1, c2))
 
 
-    for c in collSites:
+        for c in collSites:
+            for p in prodFacs:
+                print("{} collected from {} for facility {}".format(transportCtoP[c,p].x, c, p))
+
+        for p1 in prodFacs:
+            for p2 in prodFacs:
+                print("{} milk, {} yogurt, and {} cream shipped from prod fac {} to prod fac {}".format(transportPtoPMilk[p1,p2].x, transportPtoPYog[p1,p2].x, transportPtoPCream[p1,p2].x, p1, p2))
+
+
         for p in prodFacs:
-            print("{} collected from {} for facility {}".format(transportCtoP[c,p].x, c, p))
-
-    for p1 in prodFacs:
-        for p2 in prodFacs:
-            print("{} milk, {} yogurt, and {} cream shipped from prod fac {} to prod fac {}".format(transportPtoPMilk[p1,p2].x, transportPtoPYog[p1,p2].x, transportPtoPCream[p1,p2].x, p1, p2))
-
-
-    for p in prodFacs:
-        for s in superMarkts:
-            print("{} milk, {} yogurt, and {} cream produced by {} for supermarket {}".format(transportPtoSMilk[p,s].x, transportPtoSYog[p,s].x, transportPtoSCream[p,s].x, p, s))
+            for s in superMarkts:
+                print("{} milk, {} yogurt, and {} cream produced by {} for supermarket {}".format(transportPtoSMilk[p,s].x, transportPtoSYog[p,s].x, transportPtoSCream[p,s].x, p, s))
 
 
 
@@ -216,10 +218,42 @@ def solve_model(model):
     model.close()
 
 
-def additional_function(input):
+def simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, increase_factor_range):
     # add code here for your additional functions (e.g. sensitivity experiments)
-    data= null
-    build_model(data)
+    
+    for i in increase_factor_range:
+        supplyCapDemandDataNew = supplyCapDemandData.copy()
+        for d in supplyCapDemandDataNew:
+            if "S" in d[0]:
+                d[5] *= i
+        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+
+
+def simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility, new_capacity_range):
+    # add code here for your additional functions (e.g. sensitivity experiments)
+    
+    for i in new_capacity_range:
+        supplyCapDemandDataNew = supplyCapDemandData.copy()
+        for d in supplyCapDemandDataNew:
+            if facility in d[0]:
+                d[2] += i
+        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+
+
+def simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData):
+    supplyScenarios = pd.read_excel('supply_scenarios.xlsx').values
+
+    for i in range(2,len(supplyScenarios[0])):
+        supplyCapDemandDataNew = supplyCapDemandData.copy()
+        for d in supplyCapDemandDataNew:
+            if supplyScenarios[0][0] in d[0]:
+                d[3] = supplyScenarios[0][i]
+            elif supplyScenarios[1][0] in d[0]:
+                d[3] = supplyScenarios[1][i]
+            elif supplyScenarios[2][0] in d[0]:
+                d[3] = supplyScenarios[2][i]
+        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+
 
 
 if __name__ == "__main__":
@@ -228,9 +262,14 @@ if __name__ == "__main__":
     # if the file contains answers to multiple questions, you can comment them out (see example below)
     supplyCapDemandData, variableCostsData, fixedCostsData = read_data()
     
-    build_model(supplyCapDemandData, variableCostsData, fixedCostsData)
+    #build_model(supplyCapDemandData, variableCostsData, fixedCostsData)
+
+    
     # # Part (c): Increasing Yogurt Demand
-    # simulate_demand_increase_yogurt(data, increase_factor_range=np.arange(1.0, 2.6, 0.1))
+    #simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, np.arange(1.0, 2.6, 0.1))
 
     # # Part (d): Changing Production Capacity
-    # simulate_capacity_change(data, facility="P2", new_capacity_range=np.arange(100, 200, 10))
+    #simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility="P2", new_capacity_range=np.arange(100, 200, 10))
+
+    # # Part 1.4 (a)
+    simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData)
