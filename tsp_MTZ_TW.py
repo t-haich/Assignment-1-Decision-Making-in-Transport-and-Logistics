@@ -9,13 +9,18 @@ def read_data():
 
     timeC1 = pd.read_excel('time_between_farms_c1.xlsx').values
     timeC2 = pd.read_excel('time_between_farms_c2.xlsx').values
+    pickup1 = pd.read_excel('pickuptime_per_farm_C1.xlsx').values
+    pickup2 = pd.read_excel('pickuptime_per_farm_C2.xlsx').values
 
-    return timeC1, timeC2
+    return timeC1, timeC2, pickup1, pickup2
 
 
-def build_model(timeC1, timeC2):
+def build_model(timeC1, timeC2, pickup1, pickup2):
 
     model = gp.Model("tsp_MTZ")
+
+    routing_cost = 0.5
+    late_cost = 10
 
     # Define sets and parameters
     linksC1 = []
@@ -24,6 +29,8 @@ def build_model(timeC1, timeC2):
     V2 = []
     time_between1 = []
     time_between2 = []
+    pickup1 = [pickup1[i][1] for i in range(len(pickup1))]
+    pickup2 = [pickup2[i][1] for i in range(len(pickup2))]
 
     for d in timeC1:
         time = []
@@ -48,6 +55,7 @@ def build_model(timeC1, timeC2):
     # Define decision variables
     transportC1 = model.addVars(linksC1, vtype=GRB.BINARY, name="transport1")
     visited1 = model.addVars(V1, vtype=GRB.CONTINUOUS, name="visited1")
+    pickUpTime1 = model.addVars(V1[1:], vtype=GRB.CONTINUOUS, name="pickup1")
 
     transportC2 = model.addVars(linksC2, vtype=GRB.BINARY, name="transport2")
     visited2 = model.addVars(V2, vtype=GRB.CONTINUOUS, name="visited2")
@@ -58,11 +66,16 @@ def build_model(timeC1, timeC2):
     # Set objective function
     model.modelSense = GRB.MINIMIZE
 
-    print(transportC1.select(0,1))
-    var_cost_expr1 = gp.quicksum(transportC1[i, j] * time_between1[i, j] for i, j in linksC1)
+    var_cost_expr1 = gp.quicksum(transportC1[i, j] * time_between1[i, j] * routing_cost for i, j in linksC1)
+    #pickup_cost1 = gp.quicksum(late_cost for i in V1[1:] if pickUpTime1[i] - pickup1[i] >= 31)
+    pickup_cost1 = 0
+    for i in V1[1:]:
+        if (pickUpTime1[i] - pickup1[i]) >= 31:
+            pickup_cost1 += late_cost
+
     var_cost_expr2 = gp.quicksum(transportC2[i, j] * time_between2[i, j] for i, j in linksC2)
 
-    model.setObjective(var_cost_expr1 + var_cost_expr2, GRB.MINIMIZE)
+    model.setObjective(var_cost_expr1 + pickup_cost1 + var_cost_expr2, GRB.MINIMIZE)
 
     # Add constraints
     model.addConstrs((gp.quicksum(transportC1[i, j] for i in V1 if not i == j) == 1 for j in V1), "visitsC1ij")
@@ -83,6 +96,8 @@ def build_model(timeC1, timeC2):
 
     model.addConstrs((transportC2[i, j] >= 0 for i, j in linksC2))
     model.addConstrs((visited2[i] >= 0 for i in V2))
+
+    model.addConstrs((pickUpTime1[i] >= pickup1[i] for i in V1[1:]))
 
     model.update()
 
@@ -122,8 +137,8 @@ if __name__ == "__main__":
     # steer the running of the experiments. 
     # give detailed comments on how to run the code.
     # if the file contains answers to multiple questions, you can comment them out (see example below)
-    timeC1, timeC2 = read_data()
+    timeC1, timeC2, pickup1, pickup2 = read_data()
 
-    build_model(timeC1, timeC2)
+    build_model(timeC1, timeC2, pickup1, pickup2)
     
 
