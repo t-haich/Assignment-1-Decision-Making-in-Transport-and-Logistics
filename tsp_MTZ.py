@@ -91,13 +91,13 @@ def build_model(timeC1, timeC2):
 
 
     for i, j in linksC1:
-        if not transportC1[i, j].x:
+        if transportC1[i, j].x:
             print ("({}, {}) from C1 was visited".format(i, j))
         else:
             print ("({}, {}) from C1 was not visited".format(i, j))
 
     for i, j in linksC2:
-        if not transportC2[i, j].x:
+        if transportC2[i, j].x:
             print ("({}, {}) from C2 was visited".format(i, j))
         else:
             print ("({}, {}) from C2 was not visited".format(i, j))
@@ -130,8 +130,4 @@ if __name__ == "__main__":
 
     build_model(timeC1, timeC2)
     
-    # # Part (c): Increasing Yogurt Demand
-    # simulate_demand_increase_yogurt(data, increase_factor_range=np.arange(1.0, 2.6, 0.1))
 
-    # # Part (d): Changing Production Capacity
-    # simulate_capacity_change(data, facility="P2", new_capacity_range=np.arange(100, 200, 10))
