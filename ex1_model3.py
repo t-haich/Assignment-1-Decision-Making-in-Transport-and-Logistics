@@ -147,6 +147,11 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
     model.addConstrs((transportPtoSCream.sum('*', s) == demand[s - len(supply) - len(capacity)][2] for s in superMarkts), "Demand Cream")
 
+    model.addConstrs((transportCtoP.sum('*', p) <= capacity[p - len(supply)] for p in prodFacs), "Capacity limit")
+    model.addConstrs((transportPtoSMilk.sum(p, '*') <= capMilk[p - len(supply)] for p in prodFacs), "Capacity limit milk")
+    model.addConstrs((transportPtoSYog.sum(p, '*') <= capYog[p - len(supply)] for p in prodFacs), "Capacity limit yogurt")
+    model.addConstrs((transportPtoSCream.sum(p, '*') <= capCream[p - len(supply)] for p in prodFacs), "Capacity limit cream")
+
     model.addConstrs((transportCtoP[c,p] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
 
     #model.addConstrs((transportPtoS[p,s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")

@@ -100,6 +100,26 @@ Subject To
  Demand_Cream[7]: trans_ptos_cream[3,7] + trans_ptos_cream[4,7] = 50
  Demand_Cream[8]: trans_ptos_cream[3,8] + trans_ptos_cream[4,8] = 10
  Demand_Cream[9]: trans_ptos_cream[3,9] + trans_ptos_cream[4,9] = 30
+ Capacity_limit[3]: trans_ctop[0,3] + trans_ctop[1,3] + trans_ctop[2,3]
+   <= 350
+ Capacity_limit[4]: trans_ctop[0,4] + trans_ctop[1,4] + trans_ctop[2,4]
+   <= 250
+ Capacity_limit_milk[3]: trans_ptos_milk[3,5] + trans_ptos_milk[3,6]
+   + trans_ptos_milk[3,7] + trans_ptos_milk[3,8] + trans_ptos_milk[3,9]
+   <= 175
+ Capacity_limit_milk[4]: trans_ptos_milk[4,5] + trans_ptos_milk[4,6]
+   + trans_ptos_milk[4,7] + trans_ptos_milk[4,8] + trans_ptos_milk[4,9]
+   <= 150
+ Capacity_limit_yogurt[3]: trans_ptos_yog[3,5] + trans_ptos_yog[3,6]
+   + trans_ptos_yog[3,7] + trans_ptos_yog[3,8] + trans_ptos_yog[3,9] <= 70
+ Capacity_limit_yogurt[4]: trans_ptos_yog[4,5] + trans_ptos_yog[4,6]
+   + trans_ptos_yog[4,7] + trans_ptos_yog[4,8] + trans_ptos_yog[4,9] <= 25
+ Capacity_limit_cream[3]: trans_ptos_cream[3,5] + trans_ptos_cream[3,6]
+   + trans_ptos_cream[3,7] + trans_ptos_cream[3,8] + trans_ptos_cream[3,9]
+   <= 105
+ Capacity_limit_cream[4]: trans_ptos_cream[4,5] + trans_ptos_cream[4,6]
+   + trans_ptos_cream[4,7] + trans_ptos_cream[4,8] + trans_ptos_cream[4,9]
+   <= 75
  Transport_C_to_P[0,3]: trans_ctop[0,3] >= 0
  Transport_C_to_P[0,4]: trans_ctop[0,4] >= 0
  Transport_C_to_P[1,3]: trans_ctop[1,3] >= 0
@@ -136,48 +156,48 @@ Subject To
  Transport_P_to_S_Cream[8,4]: trans_ptos_cream[4,8] >= 0
  Transport_P_to_S_Cream[9,3]: trans_ptos_cream[3,9] >= 0
  Transport_P_to_S_Cream[9,4]: trans_ptos_cream[4,9] >= 0
- R56: - trans_ctop[0,0] + 8 trucks_ctoc[0,0] >= 0
- R57: - trans_ctop[0,1] + 8 trucks_ctoc[0,1] >= 0
- R58: - trans_ctop[0,2] + 8 trucks_ctoc[0,2] >= 0
- R59: - trans_ctop[1,0] + 8 trucks_ctoc[1,0] >= 0
- R60: - trans_ctop[1,1] + 8 trucks_ctoc[1,1] >= 0
- R61: - trans_ctop[1,2] + 8 trucks_ctoc[1,2] >= 0
- R62: - trans_ctop[2,0] + 8 trucks_ctoc[2,0] >= 0
- R63: - trans_ctop[2,1] + 8 trucks_ctoc[2,1] >= 0
- R64: - trans_ctop[2,2] + 8 trucks_ctoc[2,2] >= 0
- R65: - trans_ctop[0,3] + 8 trucks_ctop[0,3] >= 0
- R66: - trans_ctop[0,4] + 8 trucks_ctop[0,4] >= 0
- R67: - trans_ctop[1,3] + 8 trucks_ctop[1,3] >= 0
- R68: - trans_ctop[1,4] + 8 trucks_ctop[1,4] >= 0
- R69: - trans_ctop[2,3] + 8 trucks_ctop[2,3] >= 0
- R70: - trans_ctop[2,4] + 8 trucks_ctop[2,4] >= 0
- R71: - trans_ptop_milk[3,3] - trans_ptop_yog[3,3] - trans_ptop_cream[3,3]
+ R64: - trans_ctop[0,0] + 8 trucks_ctoc[0,0] >= 0
+ R65: - trans_ctop[0,1] + 8 trucks_ctoc[0,1] >= 0
+ R66: - trans_ctop[0,2] + 8 trucks_ctoc[0,2] >= 0
+ R67: - trans_ctop[1,0] + 8 trucks_ctoc[1,0] >= 0
+ R68: - trans_ctop[1,1] + 8 trucks_ctoc[1,1] >= 0
+ R69: - trans_ctop[1,2] + 8 trucks_ctoc[1,2] >= 0
+ R70: - trans_ctop[2,0] + 8 trucks_ctoc[2,0] >= 0
+ R71: - trans_ctop[2,1] + 8 trucks_ctoc[2,1] >= 0
+ R72: - trans_ctop[2,2] + 8 trucks_ctoc[2,2] >= 0
+ R73: - trans_ctop[0,3] + 8 trucks_ctop[0,3] >= 0
+ R74: - trans_ctop[0,4] + 8 trucks_ctop[0,4] >= 0
+ R75: - trans_ctop[1,3] + 8 trucks_ctop[1,3] >= 0
+ R76: - trans_ctop[1,4] + 8 trucks_ctop[1,4] >= 0
+ R77: - trans_ctop[2,3] + 8 trucks_ctop[2,3] >= 0
+ R78: - trans_ctop[2,4] + 8 trucks_ctop[2,4] >= 0
+ R79: - trans_ptop_milk[3,3] - trans_ptop_yog[3,3] - trans_ptop_cream[3,3]
    + 8 trucks_ptop[3,3] >= 0
- R72: - trans_ptop_milk[3,4] - trans_ptop_yog[3,4] - trans_ptop_cream[3,4]
+ R80: - trans_ptop_milk[3,4] - trans_ptop_yog[3,4] - trans_ptop_cream[3,4]
    + 8 trucks_ptop[3,4] >= 0
- R73: - trans_ptop_milk[4,3] - trans_ptop_yog[4,3] - trans_ptop_cream[4,3]
+ R81: - trans_ptop_milk[4,3] - trans_ptop_yog[4,3] - trans_ptop_cream[4,3]
    + 8 trucks_ptop[4,3] >= 0
- R74: - trans_ptop_milk[4,4] - trans_ptop_yog[4,4] - trans_ptop_cream[4,4]
+ R82: - trans_ptop_milk[4,4] - trans_ptop_yog[4,4] - trans_ptop_cream[4,4]
    + 8 trucks_ptop[4,4] >= 0
- R75: - trans_ptos_milk[3,5] - trans_ptos_yog[3,5] - trans_ptos_cream[3,5]
+ R83: - trans_ptos_milk[3,5] - trans_ptos_yog[3,5] - trans_ptos_cream[3,5]
    + 8 trucks_ptos[3,5] >= 0
- R76: - trans_ptos_milk[3,6] - trans_ptos_yog[3,6] - trans_ptos_cream[3,6]
+ R84: - trans_ptos_milk[3,6] - trans_ptos_yog[3,6] - trans_ptos_cream[3,6]
    + 8 trucks_ptos[3,6] >= 0
- R77: - trans_ptos_milk[3,7] - trans_ptos_yog[3,7] - trans_ptos_cream[3,7]
+ R85: - trans_ptos_milk[3,7] - trans_ptos_yog[3,7] - trans_ptos_cream[3,7]
    + 8 trucks_ptos[3,7] >= 0
- R78: - trans_ptos_milk[3,8] - trans_ptos_yog[3,8] - trans_ptos_cream[3,8]
+ R86: - trans_ptos_milk[3,8] - trans_ptos_yog[3,8] - trans_ptos_cream[3,8]
    + 8 trucks_ptos[3,8] >= 0
- R79: - trans_ptos_milk[3,9] - trans_ptos_yog[3,9] - trans_ptos_cream[3,9]
+ R87: - trans_ptos_milk[3,9] - trans_ptos_yog[3,9] - trans_ptos_cream[3,9]
    + 8 trucks_ptos[3,9] >= 0
- R80: - trans_ptos_milk[4,5] - trans_ptos_yog[4,5] - trans_ptos_cream[4,5]
+ R88: - trans_ptos_milk[4,5] - trans_ptos_yog[4,5] - trans_ptos_cream[4,5]
    + 8 trucks_ptos[4,5] >= 0
- R81: - trans_ptos_milk[4,6] - trans_ptos_yog[4,6] - trans_ptos_cream[4,6]
+ R89: - trans_ptos_milk[4,6] - trans_ptos_yog[4,6] - trans_ptos_cream[4,6]
    + 8 trucks_ptos[4,6] >= 0
- R82: - trans_ptos_milk[4,7] - trans_ptos_yog[4,7] - trans_ptos_cream[4,7]
+ R90: - trans_ptos_milk[4,7] - trans_ptos_yog[4,7] - trans_ptos_cream[4,7]
    + 8 trucks_ptos[4,7] >= 0
- R83: - trans_ptos_milk[4,8] - trans_ptos_yog[4,8] - trans_ptos_cream[4,8]
+ R91: - trans_ptos_milk[4,8] - trans_ptos_yog[4,8] - trans_ptos_cream[4,8]
    + 8 trucks_ptos[4,8] >= 0
- R84: - trans_ptos_milk[4,9] - trans_ptos_yog[4,9] - trans_ptos_cream[4,9]
+ R92: - trans_ptos_milk[4,9] - trans_ptos_yog[4,9] - trans_ptos_cream[4,9]
    + 8 trucks_ptos[4,9] >= 0
 Bounds
 Generals
