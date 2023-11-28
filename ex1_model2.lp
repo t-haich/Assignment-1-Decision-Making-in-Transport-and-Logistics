@@ -80,6 +80,22 @@ Subject To
    <= 350
  Capacity_limit[4]: trans_ctop[0,4] + trans_ctop[1,4] + trans_ctop[2,4]
    <= 250
+ Capacity_limit_milk[3]: trans_ptos_milk[3,5] + trans_ptos_milk[3,6]
+   + trans_ptos_milk[3,7] + trans_ptos_milk[3,8] + trans_ptos_milk[3,9]
+   <= 175
+ Capacity_limit_milk[4]: trans_ptos_milk[4,5] + trans_ptos_milk[4,6]
+   + trans_ptos_milk[4,7] + trans_ptos_milk[4,8] + trans_ptos_milk[4,9]
+   <= 150
+ Capacity_limit_yogurt[3]: trans_ptos_yog[3,5] + trans_ptos_yog[3,6]
+   + trans_ptos_yog[3,7] + trans_ptos_yog[3,8] + trans_ptos_yog[3,9] <= 70
+ Capacity_limit_yogurt[4]: trans_ptos_yog[4,5] + trans_ptos_yog[4,6]
+   + trans_ptos_yog[4,7] + trans_ptos_yog[4,8] + trans_ptos_yog[4,9] <= 25
+ Capacity_limit_cream[3]: trans_ptos_cream[3,5] + trans_ptos_cream[3,6]
+   + trans_ptos_cream[3,7] + trans_ptos_cream[3,8] + trans_ptos_cream[3,9]
+   <= 105
+ Capacity_limit_cream[4]: trans_ptos_cream[4,5] + trans_ptos_cream[4,6]
+   + trans_ptos_cream[4,7] + trans_ptos_cream[4,8] + trans_ptos_cream[4,9]
+   <= 75
  Transport_C_to_P[0,3]: trans_ctop[0,3] >= 0
  Transport_C_to_P[0,4]: trans_ctop[0,4] >= 0
  Transport_C_to_P[1,3]: trans_ctop[1,3] >= 0
