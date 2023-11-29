@@ -920,126 +920,101 @@ Subject To
  R728: visited1[13] >= 0
  R729: visited1[14] >= 0
  R730: visited1[15] >= 0
- R731: pickup1[1] >= 12
- R732: pickup1[2] >= 42
- R733: pickup1[3] >= 126
- R734: pickup1[4] >= 138
- R735: pickup1[5] >= 138
- R736: pickup1[6] >= 24
- R737: pickup1[7] >= 150
- R738: pickup1[8] >= 138
- R739: pickup1[9] >= 126
- R740: pickup1[10] >= 78
- R741: - pickup1[1] + final1 >= 12
- R742: - pickup1[2] + final1 >= 42
- R743: - pickup1[3] + final1 >= 126
- R744: - pickup1[4] + final1 >= 138
- R745: - pickup1[5] + final1 >= 138
- R746: - pickup1[6] + final1 >= 24
- R747: - pickup1[7] + final1 >= 150
- R748: - pickup1[8] + final1 >= 138
- R749: - pickup1[9] + final1 >= 126
- R750: - pickup1[10] + final1 >= 78
- R751: - pickup1[1] + late1[1] >= -50
- R752: - pickup1[2] + late1[2] >= -44
- R753: - pickup1[3] + late1[3] >= -30
- R754: - pickup1[4] + late1[4] >= -48
- R755: - pickup1[5] + late1[5] >= -190
- R756: - pickup1[6] + late1[6] >= -192
- R757: - pickup1[7] + late1[7] >= -164
- R758: - pickup1[8] + late1[8] >= -197
- R759: - pickup1[9] + late1[9] >= -145
- R760: - pickup1[10] + late1[10] >= -21
- R761: late1[1] >= 0
- R762: late1[2] >= 0
- R763: late1[3] >= 0
- R764: late1[4] >= 0
- R765: late1[5] >= 0
- R766: late1[6] >= 0
- R767: late1[7] >= 0
- R768: late1[8] >= 0
- R769: late1[9] >= 0
- R770: late1[10] >= 0
- R771: pickup1[1] >= 35
- R772: pickup1[2] >= 29
- R773: pickup1[3] >= 15
- R774: pickup1[4] >= 33
- R775: pickup1[5] >= 175
- R776: pickup1[6] >= 177
- R777: pickup1[7] >= 149
- R778: pickup1[8] >= 182
- R779: pickup1[9] >= 130
- R780: pickup1[10] >= 6
- R781: pickup1[1] >= 150
- R782: pickup1[2] >= 90
- R783: pickup1[3] >= 66
- R784: pickup1[4] >= 162
- R785: pickup1[5] >= 126
- R786: pickup1[6] >= 144
- R787: pickup1[7] >= 192
- R788: pickup1[8] >= 90
- R789: pickup1[9] >= 72
- R790: pickup1[10] >= 36
- R791: pickup1[11] >= 48
- R792: pickup1[12] >= 78
- R793: pickup1[13] >= 114
- R794: pickup1[14] >= 114
- R795: pickup1[15] >= 48
- R796: - pickup1[1] + final1 >= 150
- R797: - pickup1[2] + final1 >= 90
- R798: - pickup1[3] + final1 >= 66
- R799: - pickup1[4] + final1 >= 162
- R800: - pickup1[5] + final1 >= 126
- R801: - pickup1[6] + final1 >= 144
- R802: - pickup1[7] + final1 >= 192
- R803: - pickup1[8] + final1 >= 90
- R804: - pickup1[9] + final1 >= 72
- R805: - pickup1[10] + final1 >= 36
- R806: - pickup1[11] + final1 >= 48
- R807: - pickup1[12] + final1 >= 78
- R808: - pickup1[13] + final1 >= 114
- R809: - pickup1[14] + final1 >= 114
- R810: - pickup1[15] + final1 >= 48
- R811: - pickup1[1] + late1[1] >= -94
- R812: - pickup1[2] + late1[2] >= -228
- R813: - pickup1[3] + late1[3] >= -208
- R814: - pickup1[4] + late1[4] >= -87
- R815: - pickup1[5] + late1[5] >= -221
- R816: - pickup1[6] + late1[6] >= -212
- R817: - pickup1[7] + late1[7] >= -193
- R818: - pickup1[8] + late1[8] >= -174
- R819: - pickup1[9] + late1[9] >= -144
- R820: - pickup1[10] + late1[10] >= -17
- R821: - pickup1[11] + late1[11] >= -94
- R822: - pickup1[12] + late1[12] >= -94
- R823: - pickup1[13] + late1[13] >= -101
- R824: - pickup1[14] + late1[14] >= -222
- R825: - pickup1[15] + late1[15] >= -66
- R826: late1[1] >= 0
- R827: late1[2] >= 0
- R828: late1[3] >= 0
- R829: late1[4] >= 0
- R830: late1[5] >= 0
- R831: late1[6] >= 0
- R832: late1[7] >= 0
- R833: late1[8] >= 0
- R834: late1[9] >= 0
- R835: late1[10] >= 0
- R836: late1[11] >= 0
- R837: late1[12] >= 0
- R838: late1[13] >= 0
- R839: late1[14] >= 0
- R840: late1[15] >= 0
- R841: pickup1[1] >= 79
- R842: pickup1[2] >= 213
- R843: pickup1[3] >= 193
- R844: pickup1[4] >= 72
- R845: pickup1[5] >= 206
- R846: pickup1[6] >= 197
- R847: pickup1[7] >= 178
- R848: pickup1[8] >= 159
- R849: pickup1[9] >= 129
- R850: pickup1[10] >= 2
+ R731: - 12 transport1[0,1] + pickup1[1] >= 0
+ R732: - 42 transport1[0,2] + pickup1[2] >= 0
+ R733: - 126 transport1[0,3] + pickup1[3] >= 0
+ R734: - 138 transport1[0,4] + pickup1[4] >= 0
+ R735: - 138 transport1[0,5] + pickup1[5] >= 0
+ R736: - 24 transport1[0,6] + pickup1[6] >= 0
+ R737: - 150 transport1[0,7] + pickup1[7] >= 0
+ R738: - 138 transport1[0,8] + pickup1[8] >= 0
+ R739: - 126 transport1[0,9] + pickup1[9] >= 0
+ R740: - 78 transport1[0,10] + pickup1[10] >= 0
+ R741: - pickup1[1] + late1[1] >= -80
+ R742: - pickup1[2] + late1[2] >= -74
+ R743: - pickup1[3] + late1[3] >= -60
+ R744: - pickup1[4] + late1[4] >= -78
+ R745: - pickup1[5] + late1[5] >= -220
+ R746: - pickup1[6] + late1[6] >= -222
+ R747: - pickup1[7] + late1[7] >= -194
+ R748: - pickup1[8] + late1[8] >= -227
+ R749: - pickup1[9] + late1[9] >= -175
+ R750: - pickup1[10] + late1[10] >= -51
+ R751: late1[1] >= 0
+ R752: late1[2] >= 0
+ R753: late1[3] >= 0
+ R754: late1[4] >= 0
+ R755: late1[5] >= 0
+ R756: late1[6] >= 0
+ R757: late1[7] >= 0
+ R758: late1[8] >= 0
+ R759: late1[9] >= 0
+ R760: late1[10] >= 0
+ R761: pickup1[1] >= 35
+ R762: pickup1[2] >= 29
+ R763: pickup1[3] >= 15
+ R764: pickup1[4] >= 33
+ R765: pickup1[5] >= 175
+ R766: pickup1[6] >= 177
+ R767: pickup1[7] >= 149
+ R768: pickup1[8] >= 182
+ R769: pickup1[9] >= 130
+ R770: pickup1[10] >= 6
+ R771: - 150 transport1[0,1] + pickup1[1] >= 0
+ R772: - 90 transport1[0,2] + pickup1[2] >= 0
+ R773: - 66 transport1[0,3] + pickup1[3] >= 0
+ R774: - 162 transport1[0,4] + pickup1[4] >= 0
+ R775: - 126 transport1[0,5] + pickup1[5] >= 0
+ R776: - 144 transport1[0,6] + pickup1[6] >= 0
+ R777: - 192 transport1[0,7] + pickup1[7] >= 0
+ R778: - 90 transport1[0,8] + pickup1[8] >= 0
+ R779: - 72 transport1[0,9] + pickup1[9] >= 0
+ R780: - 36 transport1[0,10] + pickup1[10] >= 0
+ R781: - 48 transport1[0,11] + pickup1[11] >= 0
+ R782: - 78 transport1[0,12] + pickup1[12] >= 0
+ R783: - 114 transport1[0,13] + pickup1[13] >= 0
+ R784: - 114 transport1[0,14] + pickup1[14] >= 0
+ R785: - 48 transport1[0,15] + pickup1[15] >= 0
+ R786: - pickup1[1] + late1[1] >= -124
+ R787: - pickup1[2] + late1[2] >= -258
+ R788: - pickup1[3] + late1[3] >= -238
+ R789: - pickup1[4] + late1[4] >= -117
+ R790: - pickup1[5] + late1[5] >= -251
+ R791: - pickup1[6] + late1[6] >= -242
+ R792: - pickup1[7] + late1[7] >= -223
+ R793: - pickup1[8] + late1[8] >= -204
+ R794: - pickup1[9] + late1[9] >= -174
+ R795: - pickup1[10] + late1[10] >= -47
+ R796: - pickup1[11] + late1[11] >= -124
+ R797: - pickup1[12] + late1[12] >= -124
+ R798: - pickup1[13] + late1[13] >= -131
+ R799: - pickup1[14] + late1[14] >= -252
+ R800: - pickup1[15] + late1[15] >= -96
+ R801: late1[1] >= 0
+ R802: late1[2] >= 0
+ R803: late1[3] >= 0
+ R804: late1[4] >= 0
+ R805: late1[5] >= 0
+ R806: late1[6] >= 0
+ R807: late1[7] >= 0
+ R808: late1[8] >= 0
+ R809: late1[9] >= 0
+ R810: late1[10] >= 0
+ R811: late1[11] >= 0
+ R812: late1[12] >= 0
+ R813: late1[13] >= 0
+ R814: late1[14] >= 0
+ R815: late1[15] >= 0
+ R816: pickup1[1] >= 79
+ R817: pickup1[2] >= 213
+ R818: pickup1[3] >= 193
+ R819: pickup1[4] >= 72
+ R820: pickup1[5] >= 206
+ R821: pickup1[6] >= 197
+ R822: pickup1[7] >= 178
+ R823: pickup1[8] >= 159
+ R824: pickup1[9] >= 129
+ R825: pickup1[10] >= 2
  qc0: - 30 transport1[1,2] + pickup1[2] + [ - transport1[1,2] * pickup1[1]
    ] >= 0
  qc1: - 114 transport1[1,3] + pickup1[3] + [ - transport1[1,3] * pickup1[1]
@@ -1220,426 +1195,476 @@ Subject To
    - transport1[10,8] * pickup1[10] ] >= 0
  qc89: - 168 transport1[10,9] + pickup1[9] + [
    - transport1[10,9] * pickup1[10] ] >= 0
- qc90: - 168 transport1[1,2] + pickup1[2] + [
+ qc90: - 12 transport1[1,0] + final1 + [ - transport1[1,0] * pickup1[1] ]
+   >= 0
+ qc91: - 42 transport1[2,0] + final1 + [ - transport1[2,0] * pickup1[2] ]
+   >= 0
+ qc92: - 126 transport1[3,0] + final1 + [ - transport1[3,0] * pickup1[3] ]
+   >= 0
+ qc93: - 138 transport1[4,0] + final1 + [ - transport1[4,0] * pickup1[4] ]
+   >= 0
+ qc94: - 138 transport1[5,0] + final1 + [ - transport1[5,0] * pickup1[5] ]
+   >= 0
+ qc95: - 24 transport1[6,0] + final1 + [ - transport1[6,0] * pickup1[6] ]
+   >= 0
+ qc96: - 150 transport1[7,0] + final1 + [ - transport1[7,0] * pickup1[7] ]
+   >= 0
+ qc97: - 138 transport1[8,0] + final1 + [ - transport1[8,0] * pickup1[8] ]
+   >= 0
+ qc98: - 126 transport1[9,0] + final1 + [ - transport1[9,0] * pickup1[9] ]
+   >= 0
+ qc99: - 78 transport1[10,0] + final1 + [ - transport1[10,0] * pickup1[10]
+   ] >= 0
+ qc100: - 168 transport1[1,2] + pickup1[2] + [
    - transport1[1,2] * pickup1[1] ] >= 0
- qc91: - 192 transport1[1,3] + pickup1[3] + [
+ qc101: - 192 transport1[1,3] + pickup1[3] + [
    - transport1[1,3] * pickup1[1] ] >= 0
- qc92: - 30 transport1[1,4] + pickup1[4] + [ - transport1[1,4] * pickup1[1]
-   ] >= 0
- qc93: - 30 transport1[1,5] + pickup1[5] + [ - transport1[1,5] * pickup1[1]
-   ] >= 0
- qc94: - 216 transport1[1,6] + pickup1[6] + [
+ qc102: - 30 transport1[1,4] + pickup1[4] + [
+   - transport1[1,4] * pickup1[1] ] >= 0
+ qc103: - 30 transport1[1,5] + pickup1[5] + [
+   - transport1[1,5] * pickup1[1] ] >= 0
+ qc104: - 216 transport1[1,6] + pickup1[6] + [
    - transport1[1,6] * pickup1[1] ] >= 0
- qc95: - 186 transport1[1,7] + pickup1[7] + [
+ qc105: - 186 transport1[1,7] + pickup1[7] + [
    - transport1[1,7] * pickup1[1] ] >= 0
- qc96: - 204 transport1[1,8] + pickup1[8] + [
+ qc106: - 204 transport1[1,8] + pickup1[8] + [
    - transport1[1,8] * pickup1[1] ] >= 0
- qc97: - 144 transport1[1,9] + pickup1[9] + [
+ qc107: - 144 transport1[1,9] + pickup1[9] + [
    - transport1[1,9] * pickup1[1] ] >= 0
- qc98: - 138 transport1[1,10] + pickup1[10] + [
+ qc108: - 138 transport1[1,10] + pickup1[10] + [
    - transport1[1,10] * pickup1[1] ] >= 0
- qc99: - 174 transport1[1,11] + pickup1[11] + [
+ qc109: - 174 transport1[1,11] + pickup1[11] + [
    - transport1[1,11] * pickup1[1] ] >= 0
- qc100: - 192 transport1[1,12] + pickup1[12] + [
+ qc110: - 192 transport1[1,12] + pickup1[12] + [
    - transport1[1,12] * pickup1[1] ] >= 0
- qc101: - 42 transport1[1,13] + pickup1[13] + [
+ qc111: - 42 transport1[1,13] + pickup1[13] + [
    - transport1[1,13] * pickup1[1] ] >= 0
- qc102: - 180 transport1[1,14] + pickup1[14] + [
+ qc112: - 180 transport1[1,14] + pickup1[14] + [
    - transport1[1,14] * pickup1[1] ] >= 0
- qc103: - 102 transport1[1,15] + pickup1[15] + [
+ qc113: - 102 transport1[1,15] + pickup1[15] + [
    - transport1[1,15] * pickup1[1] ] >= 0
- qc104: - 168 transport1[2,1] + pickup1[1] + [
+ qc114: - 168 transport1[2,1] + pickup1[1] + [
    - transport1[2,1] * pickup1[2] ] >= 0
- qc105: - 54 transport1[2,3] + pickup1[3] + [
+ qc115: - 54 transport1[2,3] + pickup1[3] + [
    - transport1[2,3] * pickup1[2] ] >= 0
- qc106: - 162 transport1[2,4] + pickup1[4] + [
+ qc116: - 162 transport1[2,4] + pickup1[4] + [
    - transport1[2,4] * pickup1[2] ] >= 0
- qc107: - 156 transport1[2,5] + pickup1[5] + [
+ qc117: - 156 transport1[2,5] + pickup1[5] + [
    - transport1[2,5] * pickup1[2] ] >= 0
- qc108: - 60 transport1[2,6] + pickup1[6] + [
+ qc118: - 60 transport1[2,6] + pickup1[6] + [
    - transport1[2,6] * pickup1[2] ] >= 0
- qc109: - 114 transport1[2,7] + pickup1[7] + [
+ qc119: - 114 transport1[2,7] + pickup1[7] + [
    - transport1[2,7] * pickup1[2] ] >= 0
- qc110: - 42 transport1[2,8] + pickup1[8] + [
+ qc120: - 42 transport1[2,8] + pickup1[8] + [
    - transport1[2,8] * pickup1[2] ] >= 0
- qc111: - 30 transport1[2,9] + pickup1[9] + [
+ qc121: - 30 transport1[2,9] + pickup1[9] + [
    - transport1[2,9] * pickup1[2] ] >= 0
- qc112: - 60 transport1[2,10] + pickup1[10] + [
+ qc122: - 60 transport1[2,10] + pickup1[10] + [
    - transport1[2,10] * pickup1[2] ] >= 0
- qc113: - 54 transport1[2,11] + pickup1[11] + [
+ qc123: - 54 transport1[2,11] + pickup1[11] + [
    - transport1[2,11] * pickup1[2] ] >= 0
- qc114: - 36 transport1[2,12] + pickup1[12] + [
+ qc124: - 36 transport1[2,12] + pickup1[12] + [
    - transport1[2,12] * pickup1[2] ] >= 0
- qc115: - 126 transport1[2,13] + pickup1[13] + [
+ qc125: - 126 transport1[2,13] + pickup1[13] + [
    - transport1[2,13] * pickup1[2] ] >= 0
- qc116: - 24 transport1[2,14] + pickup1[14] + [
+ qc126: - 24 transport1[2,14] + pickup1[14] + [
    - transport1[2,14] * pickup1[2] ] >= 0
- qc117: - 102 transport1[2,15] + pickup1[15] + [
+ qc127: - 102 transport1[2,15] + pickup1[15] + [
    - transport1[2,15] * pickup1[2] ] >= 0
- qc118: - 192 transport1[3,1] + pickup1[1] + [
+ qc128: - 192 transport1[3,1] + pickup1[1] + [
    - transport1[3,1] * pickup1[3] ] >= 0
- qc119: - 54 transport1[3,2] + pickup1[2] + [
+ qc129: - 54 transport1[3,2] + pickup1[2] + [
    - transport1[3,2] * pickup1[3] ] >= 0
- qc120: - 198 transport1[3,4] + pickup1[4] + [
+ qc130: - 198 transport1[3,4] + pickup1[4] + [
    - transport1[3,4] * pickup1[3] ] >= 0
- qc121: - 174 transport1[3,5] + pickup1[5] + [
+ qc131: - 174 transport1[3,5] + pickup1[5] + [
    - transport1[3,5] * pickup1[3] ] >= 0
- qc122: - 90 transport1[3,6] + pickup1[6] + [
+ qc132: - 90 transport1[3,6] + pickup1[6] + [
    - transport1[3,6] * pickup1[3] ] >= 0
- qc123: - 162 transport1[3,7] + pickup1[7] + [
+ qc133: - 162 transport1[3,7] + pickup1[7] + [
    - transport1[3,7] * pickup1[3] ] >= 0
- qc124: - 24 transport1[3,8] + pickup1[8] + [
+ qc134: - 24 transport1[3,8] + pickup1[8] + [
    - transport1[3,8] * pickup1[3] ] >= 0
- qc125: - 54 transport1[3,9] + pickup1[9] + [
+ qc135: - 54 transport1[3,9] + pickup1[9] + [
    - transport1[3,9] * pickup1[3] ] >= 0
- qc126: - 54 transport1[3,10] + pickup1[10] + [
+ qc136: - 54 transport1[3,10] + pickup1[10] + [
    - transport1[3,10] * pickup1[3] ] >= 0
- qc127: - 18 transport1[3,11] + pickup1[11] + [
+ qc137: - 18 transport1[3,11] + pickup1[11] + [
    - transport1[3,11] * pickup1[3] ] >= 0
- qc128: - 18 transport1[3,12] + pickup1[12] + [
+ qc138: - 18 transport1[3,12] + pickup1[12] + [
    - transport1[3,12] * pickup1[3] ] >= 0
- qc129: - 150 transport1[3,13] + pickup1[13] + [
+ qc139: - 150 transport1[3,13] + pickup1[13] + [
    - transport1[3,13] * pickup1[3] ] >= 0
- qc130: - 72 transport1[3,14] + pickup1[14] + [
+ qc140: - 72 transport1[3,14] + pickup1[14] + [
    - transport1[3,14] * pickup1[3] ] >= 0
- qc131: - 102 transport1[3,15] + pickup1[15] + [
+ qc141: - 102 transport1[3,15] + pickup1[15] + [
    - transport1[3,15] * pickup1[3] ] >= 0
- qc132: - 30 transport1[4,1] + pickup1[1] + [
+ qc142: - 30 transport1[4,1] + pickup1[1] + [
    - transport1[4,1] * pickup1[4] ] >= 0
- qc133: - 162 transport1[4,2] + pickup1[2] + [
+ qc143: - 162 transport1[4,2] + pickup1[2] + [
    - transport1[4,2] * pickup1[4] ] >= 0
- qc134: - 198 transport1[4,3] + pickup1[3] + [
+ qc144: - 198 transport1[4,3] + pickup1[3] + [
    - transport1[4,3] * pickup1[4] ] >= 0
- qc135: - 54 transport1[4,5] + pickup1[5] + [
+ qc145: - 54 transport1[4,5] + pickup1[5] + [
    - transport1[4,5] * pickup1[4] ] >= 0
- qc136: - 204 transport1[4,6] + pickup1[6] + [
+ qc146: - 204 transport1[4,6] + pickup1[6] + [
    - transport1[4,6] * pickup1[4] ] >= 0
- qc137: - 162 transport1[4,7] + pickup1[7] + [
+ qc147: - 162 transport1[4,7] + pickup1[7] + [
    - transport1[4,7] * pickup1[4] ] >= 0
- qc138: - 198 transport1[4,8] + pickup1[8] + [
+ qc148: - 198 transport1[4,8] + pickup1[8] + [
    - transport1[4,8] * pickup1[4] ] >= 0
- qc139: - 144 transport1[4,9] + pickup1[9] + [
+ qc149: - 144 transport1[4,9] + pickup1[9] + [
    - transport1[4,9] * pickup1[4] ] >= 0
- qc140: - 144 transport1[4,10] + pickup1[10] + [
+ qc150: - 144 transport1[4,10] + pickup1[10] + [
    - transport1[4,10] * pickup1[4] ] >= 0
- qc141: - 180 transport1[4,11] + pickup1[11] + [
+ qc151: - 180 transport1[4,11] + pickup1[11] + [
    - transport1[4,11] * pickup1[4] ] >= 0
- qc142: - 192 transport1[4,12] + pickup1[12] + [
+ qc152: - 192 transport1[4,12] + pickup1[12] + [
    - transport1[4,12] * pickup1[4] ] >= 0
- qc143: - 48 transport1[4,13] + pickup1[13] + [
+ qc153: - 48 transport1[4,13] + pickup1[13] + [
    - transport1[4,13] * pickup1[4] ] >= 0
- qc144: - 168 transport1[4,14] + pickup1[14] + [
+ qc154: - 168 transport1[4,14] + pickup1[14] + [
    - transport1[4,14] * pickup1[4] ] >= 0
- qc145: - 120 transport1[4,15] + pickup1[15] + [
+ qc155: - 120 transport1[4,15] + pickup1[15] + [
    - transport1[4,15] * pickup1[4] ] >= 0
- qc146: - 30 transport1[5,1] + pickup1[1] + [
+ qc156: - 30 transport1[5,1] + pickup1[1] + [
    - transport1[5,1] * pickup1[5] ] >= 0
- qc147: - 156 transport1[5,2] + pickup1[2] + [
+ qc157: - 156 transport1[5,2] + pickup1[2] + [
    - transport1[5,2] * pickup1[5] ] >= 0
- qc148: - 174 transport1[5,3] + pickup1[3] + [
+ qc158: - 174 transport1[5,3] + pickup1[3] + [
    - transport1[5,3] * pickup1[5] ] >= 0
- qc149: - 54 transport1[5,4] + pickup1[4] + [
+ qc159: - 54 transport1[5,4] + pickup1[4] + [
    - transport1[5,4] * pickup1[5] ] >= 0
- qc150: - 204 transport1[5,6] + pickup1[6] + [
+ qc160: - 204 transport1[5,6] + pickup1[6] + [
    - transport1[5,6] * pickup1[5] ] >= 0
- qc151: - 192 transport1[5,7] + pickup1[7] + [
+ qc161: - 192 transport1[5,7] + pickup1[7] + [
    - transport1[5,7] * pickup1[5] ] >= 0
- qc152: - 180 transport1[5,8] + pickup1[8] + [
+ qc162: - 180 transport1[5,8] + pickup1[8] + [
    - transport1[5,8] * pickup1[5] ] >= 0
- qc153: - 132 transport1[5,9] + pickup1[9] + [
+ qc163: - 132 transport1[5,9] + pickup1[9] + [
    - transport1[5,9] * pickup1[5] ] >= 0
- qc154: - 120 transport1[5,10] + pickup1[10] + [
+ qc164: - 120 transport1[5,10] + pickup1[10] + [
    - transport1[5,10] * pickup1[5] ] >= 0
- qc155: - 150 transport1[5,11] + pickup1[11] + [
+ qc165: - 150 transport1[5,11] + pickup1[11] + [
    - transport1[5,11] * pickup1[5] ] >= 0
- qc156: - 174 transport1[5,12] + pickup1[12] + [
+ qc166: - 174 transport1[5,12] + pickup1[12] + [
    - transport1[5,12] * pickup1[5] ] >= 0
- qc157: - 36 transport1[5,13] + pickup1[13] + [
+ qc167: - 36 transport1[5,13] + pickup1[13] + [
    - transport1[5,13] * pickup1[5] ] >= 0
- qc158: - 168 transport1[5,14] + pickup1[14] + [
+ qc168: - 168 transport1[5,14] + pickup1[14] + [
    - transport1[5,14] * pickup1[5] ] >= 0
- qc159: - 78 transport1[5,15] + pickup1[15] + [
+ qc169: - 78 transport1[5,15] + pickup1[15] + [
    - transport1[5,15] * pickup1[5] ] >= 0
- qc160: - 216 transport1[6,1] + pickup1[1] + [
+ qc170: - 216 transport1[6,1] + pickup1[1] + [
    - transport1[6,1] * pickup1[6] ] >= 0
- qc161: - 60 transport1[6,2] + pickup1[2] + [
+ qc171: - 60 transport1[6,2] + pickup1[2] + [
    - transport1[6,2] * pickup1[6] ] >= 0
- qc162: - 90 transport1[6,3] + pickup1[3] + [
+ qc172: - 90 transport1[6,3] + pickup1[3] + [
    - transport1[6,3] * pickup1[6] ] >= 0
- qc163: - 204 transport1[6,4] + pickup1[4] + [
+ qc173: - 204 transport1[6,4] + pickup1[4] + [
    - transport1[6,4] * pickup1[6] ] >= 0
- qc164: - 204 transport1[6,5] + pickup1[5] + [
+ qc174: - 204 transport1[6,5] + pickup1[5] + [
    - transport1[6,5] * pickup1[6] ] >= 0
- qc165: - 96 transport1[6,7] + pickup1[7] + [
+ qc175: - 96 transport1[6,7] + pickup1[7] + [
    - transport1[6,7] * pickup1[6] ] >= 0
- qc166: - 66 transport1[6,8] + pickup1[8] + [
+ qc176: - 66 transport1[6,8] + pickup1[8] + [
    - transport1[6,8] * pickup1[6] ] >= 0
- qc167: - 84 transport1[6,9] + pickup1[9] + [
+ qc177: - 84 transport1[6,9] + pickup1[9] + [
    - transport1[6,9] * pickup1[6] ] >= 0
- qc168: - 114 transport1[6,10] + pickup1[10] + [
+ qc178: - 114 transport1[6,10] + pickup1[10] + [
    - transport1[6,10] * pickup1[6] ] >= 0
- qc169: - 102 transport1[6,11] + pickup1[11] + [
+ qc179: - 102 transport1[6,11] + pickup1[11] + [
    - transport1[6,11] * pickup1[6] ] >= 0
- qc170: - 72 transport1[6,12] + pickup1[12] + [
+ qc180: - 72 transport1[6,12] + pickup1[12] + [
    - transport1[6,12] * pickup1[6] ] >= 0
- qc171: - 174 transport1[6,13] + pickup1[13] + [
+ qc181: - 174 transport1[6,13] + pickup1[13] + [
    - transport1[6,13] * pickup1[6] ] >= 0
- qc172: - 36 transport1[6,14] + pickup1[14] + [
+ qc182: - 36 transport1[6,14] + pickup1[14] + [
    - transport1[6,14] * pickup1[6] ] >= 0
- qc173: - 162 transport1[6,15] + pickup1[15] + [
+ qc183: - 162 transport1[6,15] + pickup1[15] + [
    - transport1[6,15] * pickup1[6] ] >= 0
- qc174: - 186 transport1[7,1] + pickup1[1] + [
+ qc184: - 186 transport1[7,1] + pickup1[1] + [
    - transport1[7,1] * pickup1[7] ] >= 0
- qc175: - 114 transport1[7,2] + pickup1[2] + [
+ qc185: - 114 transport1[7,2] + pickup1[2] + [
    - transport1[7,2] * pickup1[7] ] >= 0
- qc176: - 162 transport1[7,3] + pickup1[3] + [
+ qc186: - 162 transport1[7,3] + pickup1[3] + [
    - transport1[7,3] * pickup1[7] ] >= 0
- qc177: - 162 transport1[7,4] + pickup1[4] + [
+ qc187: - 162 transport1[7,4] + pickup1[4] + [
    - transport1[7,4] * pickup1[7] ] >= 0
- qc178: - 192 transport1[7,5] + pickup1[5] + [
+ qc188: - 192 transport1[7,5] + pickup1[5] + [
    - transport1[7,5] * pickup1[7] ] >= 0
- qc179: - 96 transport1[7,6] + pickup1[6] + [
+ qc189: - 96 transport1[7,6] + pickup1[6] + [
    - transport1[7,6] * pickup1[7] ] >= 0
- qc180: - 144 transport1[7,8] + pickup1[8] + [
+ qc190: - 144 transport1[7,8] + pickup1[8] + [
    - transport1[7,8] * pickup1[7] ] >= 0
- qc181: - 126 transport1[7,9] + pickup1[9] + [
+ qc191: - 126 transport1[7,9] + pickup1[9] + [
    - transport1[7,9] * pickup1[7] ] >= 0
- qc182: - 156 transport1[7,10] + pickup1[10] + [
+ qc192: - 156 transport1[7,10] + pickup1[10] + [
    - transport1[7,10] * pickup1[7] ] >= 0
- qc183: - 162 transport1[7,11] + pickup1[11] + [
+ qc193: - 162 transport1[7,11] + pickup1[11] + [
    - transport1[7,11] * pickup1[7] ] >= 0
- qc184: - 144 transport1[7,12] + pickup1[12] + [
+ qc194: - 144 transport1[7,12] + pickup1[12] + [
    - transport1[7,12] * pickup1[7] ] >= 0
- qc185: - 156 transport1[7,13] + pickup1[13] + [
+ qc195: - 156 transport1[7,13] + pickup1[13] + [
    - transport1[7,13] * pickup1[7] ] >= 0
- qc186: - 90 transport1[7,14] + pickup1[14] + [
+ qc196: - 90 transport1[7,14] + pickup1[14] + [
    - transport1[7,14] * pickup1[7] ] >= 0
- qc187: - 180 transport1[7,15] + pickup1[15] + [
+ qc197: - 180 transport1[7,15] + pickup1[15] + [
    - transport1[7,15] * pickup1[7] ] >= 0
- qc188: - 204 transport1[8,1] + pickup1[1] + [
+ qc198: - 204 transport1[8,1] + pickup1[1] + [
    - transport1[8,1] * pickup1[8] ] >= 0
- qc189: - 42 transport1[8,2] + pickup1[2] + [
+ qc199: - 42 transport1[8,2] + pickup1[2] + [
    - transport1[8,2] * pickup1[8] ] >= 0
- qc190: - 24 transport1[8,3] + pickup1[3] + [
+ qc200: - 24 transport1[8,3] + pickup1[3] + [
    - transport1[8,3] * pickup1[8] ] >= 0
- qc191: - 198 transport1[8,4] + pickup1[4] + [
+ qc201: - 198 transport1[8,4] + pickup1[4] + [
    - transport1[8,4] * pickup1[8] ] >= 0
- qc192: - 180 transport1[8,5] + pickup1[5] + [
+ qc202: - 180 transport1[8,5] + pickup1[5] + [
    - transport1[8,5] * pickup1[8] ] >= 0
- qc193: - 66 transport1[8,6] + pickup1[6] + [
+ qc203: - 66 transport1[8,6] + pickup1[6] + [
    - transport1[8,6] * pickup1[8] ] >= 0
- qc194: - 144 transport1[8,7] + pickup1[7] + [
+ qc204: - 144 transport1[8,7] + pickup1[7] + [
    - transport1[8,7] * pickup1[8] ] >= 0
- qc195: - 54 transport1[8,9] + pickup1[9] + [
+ qc205: - 54 transport1[8,9] + pickup1[9] + [
    - transport1[8,9] * pickup1[8] ] >= 0
- qc196: - 66 transport1[8,10] + pickup1[10] + [
+ qc206: - 66 transport1[8,10] + pickup1[10] + [
    - transport1[8,10] * pickup1[8] ] >= 0
- qc197: - 42 transport1[8,11] + pickup1[11] + [
+ qc207: - 42 transport1[8,11] + pickup1[11] + [
    - transport1[8,11] * pickup1[8] ] >= 0
- qc198: - 12 transport1[8,12] + pickup1[12] + [
+ qc208: - 12 transport1[8,12] + pickup1[12] + [
    - transport1[8,12] * pickup1[8] ] >= 0
- qc199: - 156 transport1[8,13] + pickup1[13] + [
+ qc209: - 156 transport1[8,13] + pickup1[13] + [
    - transport1[8,13] * pickup1[8] ] >= 0
- qc200: - 54 transport1[8,14] + pickup1[14] + [
+ qc210: - 54 transport1[8,14] + pickup1[14] + [
    - transport1[8,14] * pickup1[8] ] >= 0
- qc201: - 120 transport1[8,15] + pickup1[15] + [
+ qc211: - 120 transport1[8,15] + pickup1[15] + [
    - transport1[8,15] * pickup1[8] ] >= 0
- qc202: - 144 transport1[9,1] + pickup1[1] + [
+ qc212: - 144 transport1[9,1] + pickup1[1] + [
    - transport1[9,1] * pickup1[9] ] >= 0
- qc203: - 30 transport1[9,2] + pickup1[2] + [
+ qc213: - 30 transport1[9,2] + pickup1[2] + [
    - transport1[9,2] * pickup1[9] ] >= 0
- qc204: - 54 transport1[9,3] + pickup1[3] + [
+ qc214: - 54 transport1[9,3] + pickup1[3] + [
    - transport1[9,3] * pickup1[9] ] >= 0
- qc205: - 144 transport1[9,4] + pickup1[4] + [
+ qc215: - 144 transport1[9,4] + pickup1[4] + [
    - transport1[9,4] * pickup1[9] ] >= 0
- qc206: - 132 transport1[9,5] + pickup1[5] + [
+ qc216: - 132 transport1[9,5] + pickup1[5] + [
    - transport1[9,5] * pickup1[9] ] >= 0
- qc207: - 84 transport1[9,6] + pickup1[6] + [
+ qc217: - 84 transport1[9,6] + pickup1[6] + [
    - transport1[9,6] * pickup1[9] ] >= 0
- qc208: - 126 transport1[9,7] + pickup1[7] + [
+ qc218: - 126 transport1[9,7] + pickup1[7] + [
    - transport1[9,7] * pickup1[9] ] >= 0
- qc209: - 54 transport1[9,8] + pickup1[8] + [
+ qc219: - 54 transport1[9,8] + pickup1[8] + [
    - transport1[9,8] * pickup1[9] ] >= 0
- qc210: - 36 transport1[9,10] + pickup1[10] + [
+ qc220: - 36 transport1[9,10] + pickup1[10] + [
    - transport1[9,10] * pickup1[9] ] >= 0
- qc211: - 42 transport1[9,11] + pickup1[11] + [
+ qc221: - 42 transport1[9,11] + pickup1[11] + [
    - transport1[9,11] * pickup1[9] ] >= 0
- qc212: - 48 transport1[9,12] + pickup1[12] + [
+ qc222: - 48 transport1[9,12] + pickup1[12] + [
    - transport1[9,12] * pickup1[9] ] >= 0
- qc213: - 102 transport1[9,13] + pickup1[13] + [
+ qc223: - 102 transport1[9,13] + pickup1[13] + [
    - transport1[9,13] * pickup1[9] ] >= 0
- qc214: - 48 transport1[9,14] + pickup1[14] + [
+ qc224: - 48 transport1[9,14] + pickup1[14] + [
    - transport1[9,14] * pickup1[9] ] >= 0
- qc215: - 78 transport1[9,15] + pickup1[15] + [
+ qc225: - 78 transport1[9,15] + pickup1[15] + [
    - transport1[9,15] * pickup1[9] ] >= 0
- qc216: - 138 transport1[10,1] + pickup1[1] + [
+ qc226: - 138 transport1[10,1] + pickup1[1] + [
    - transport1[10,1] * pickup1[10] ] >= 0
- qc217: - 60 transport1[10,2] + pickup1[2] + [
+ qc227: - 60 transport1[10,2] + pickup1[2] + [
    - transport1[10,2] * pickup1[10] ] >= 0
- qc218: - 54 transport1[10,3] + pickup1[3] + [
+ qc228: - 54 transport1[10,3] + pickup1[3] + [
    - transport1[10,3] * pickup1[10] ] >= 0
- qc219: - 144 transport1[10,4] + pickup1[4] + [
+ qc229: - 144 transport1[10,4] + pickup1[4] + [
    - transport1[10,4] * pickup1[10] ] >= 0
- qc220: - 120 transport1[10,5] + pickup1[5] + [
+ qc230: - 120 transport1[10,5] + pickup1[5] + [
    - transport1[10,5] * pickup1[10] ] >= 0
- qc221: - 114 transport1[10,6] + pickup1[6] + [
+ qc231: - 114 transport1[10,6] + pickup1[6] + [
    - transport1[10,6] * pickup1[10] ] >= 0
- qc222: - 156 transport1[10,7] + pickup1[7] + [
+ qc232: - 156 transport1[10,7] + pickup1[7] + [
    - transport1[10,7] * pickup1[10] ] >= 0
- qc223: - 66 transport1[10,8] + pickup1[8] + [
+ qc233: - 66 transport1[10,8] + pickup1[8] + [
    - transport1[10,8] * pickup1[10] ] >= 0
- qc224: - 36 transport1[10,9] + pickup1[9] + [
+ qc234: - 36 transport1[10,9] + pickup1[9] + [
    - transport1[10,9] * pickup1[10] ] >= 0
- qc225: - 36 transport1[10,11] + pickup1[11] + [
+ qc235: - 36 transport1[10,11] + pickup1[11] + [
    - transport1[10,11] * pickup1[10] ] >= 0
- qc226: - 60 transport1[10,12] + pickup1[12] + [
+ qc236: - 60 transport1[10,12] + pickup1[12] + [
    - transport1[10,12] * pickup1[10] ] >= 0
- qc227: - 102 transport1[10,13] + pickup1[13] + [
+ qc237: - 102 transport1[10,13] + pickup1[13] + [
    - transport1[10,13] * pickup1[10] ] >= 0
- qc228: - 84 transport1[10,14] + pickup1[14] + [
+ qc238: - 84 transport1[10,14] + pickup1[14] + [
    - transport1[10,14] * pickup1[10] ] >= 0
- qc229: - 48 transport1[10,15] + pickup1[15] + [
+ qc239: - 48 transport1[10,15] + pickup1[15] + [
    - transport1[10,15] * pickup1[10] ] >= 0
- qc230: - 174 transport1[11,1] + pickup1[1] + [
+ qc240: - 174 transport1[11,1] + pickup1[1] + [
    - transport1[11,1] * pickup1[11] ] >= 0
- qc231: - 54 transport1[11,2] + pickup1[2] + [
+ qc241: - 54 transport1[11,2] + pickup1[2] + [
    - transport1[11,2] * pickup1[11] ] >= 0
- qc232: - 18 transport1[11,3] + pickup1[3] + [
+ qc242: - 18 transport1[11,3] + pickup1[3] + [
    - transport1[11,3] * pickup1[11] ] >= 0
- qc233: - 180 transport1[11,4] + pickup1[4] + [
+ qc243: - 180 transport1[11,4] + pickup1[4] + [
    - transport1[11,4] * pickup1[11] ] >= 0
- qc234: - 150 transport1[11,5] + pickup1[5] + [
+ qc244: - 150 transport1[11,5] + pickup1[5] + [
    - transport1[11,5] * pickup1[11] ] >= 0
- qc235: - 102 transport1[11,6] + pickup1[6] + [
+ qc245: - 102 transport1[11,6] + pickup1[6] + [
    - transport1[11,6] * pickup1[11] ] >= 0
- qc236: - 162 transport1[11,7] + pickup1[7] + [
+ qc246: - 162 transport1[11,7] + pickup1[7] + [
    - transport1[11,7] * pickup1[11] ] >= 0
- qc237: - 42 transport1[11,8] + pickup1[8] + [
+ qc247: - 42 transport1[11,8] + pickup1[8] + [
    - transport1[11,8] * pickup1[11] ] >= 0
- qc238: - 42 transport1[11,9] + pickup1[9] + [
+ qc248: - 42 transport1[11,9] + pickup1[9] + [
    - transport1[11,9] * pickup1[11] ] >= 0
- qc239: - 36 transport1[11,10] + pickup1[10] + [
+ qc249: - 36 transport1[11,10] + pickup1[10] + [
    - transport1[11,10] * pickup1[11] ] >= 0
- qc240: - 30 transport1[11,12] + pickup1[12] + [
+ qc250: - 30 transport1[11,12] + pickup1[12] + [
    - transport1[11,12] * pickup1[11] ] >= 0
- qc241: - 132 transport1[11,13] + pickup1[13] + [
+ qc251: - 132 transport1[11,13] + pickup1[13] + [
    - transport1[11,13] * pickup1[11] ] >= 0
- qc242: - 78 transport1[11,14] + pickup1[14] + [
+ qc252: - 78 transport1[11,14] + pickup1[14] + [
    - transport1[11,14] * pickup1[11] ] >= 0
- qc243: - 84 transport1[11,15] + pickup1[15] + [
+ qc253: - 84 transport1[11,15] + pickup1[15] + [
    - transport1[11,15] * pickup1[11] ] >= 0
- qc244: - 192 transport1[12,1] + pickup1[1] + [
+ qc254: - 192 transport1[12,1] + pickup1[1] + [
    - transport1[12,1] * pickup1[12] ] >= 0
- qc245: - 36 transport1[12,2] + pickup1[2] + [
+ qc255: - 36 transport1[12,2] + pickup1[2] + [
    - transport1[12,2] * pickup1[12] ] >= 0
- qc246: - 18 transport1[12,3] + pickup1[3] + [
+ qc256: - 18 transport1[12,3] + pickup1[3] + [
    - transport1[12,3] * pickup1[12] ] >= 0
- qc247: - 192 transport1[12,4] + pickup1[4] + [
+ qc257: - 192 transport1[12,4] + pickup1[4] + [
    - transport1[12,4] * pickup1[12] ] >= 0
- qc248: - 174 transport1[12,5] + pickup1[5] + [
+ qc258: - 174 transport1[12,5] + pickup1[5] + [
    - transport1[12,5] * pickup1[12] ] >= 0
- qc249: - 72 transport1[12,6] + pickup1[6] + [
+ qc259: - 72 transport1[12,6] + pickup1[6] + [
    - transport1[12,6] * pickup1[12] ] >= 0
- qc250: - 144 transport1[12,7] + pickup1[7] + [
+ qc260: - 144 transport1[12,7] + pickup1[7] + [
    - transport1[12,7] * pickup1[12] ] >= 0
- qc251: - 12 transport1[12,8] + pickup1[8] + [
+ qc261: - 12 transport1[12,8] + pickup1[8] + [
    - transport1[12,8] * pickup1[12] ] >= 0
- qc252: - 48 transport1[12,9] + pickup1[9] + [
+ qc262: - 48 transport1[12,9] + pickup1[9] + [
    - transport1[12,9] * pickup1[12] ] >= 0
- qc253: - 60 transport1[12,10] + pickup1[10] + [
+ qc263: - 60 transport1[12,10] + pickup1[10] + [
    - transport1[12,10] * pickup1[12] ] >= 0
- qc254: - 30 transport1[12,11] + pickup1[11] + [
+ qc264: - 30 transport1[12,11] + pickup1[11] + [
    - transport1[12,11] * pickup1[12] ] >= 0
- qc255: - 150 transport1[12,13] + pickup1[13] + [
+ qc265: - 150 transport1[12,13] + pickup1[13] + [
    - transport1[12,13] * pickup1[12] ] >= 0
- qc256: - 54 transport1[12,14] + pickup1[14] + [
+ qc266: - 54 transport1[12,14] + pickup1[14] + [
    - transport1[12,14] * pickup1[12] ] >= 0
- qc257: - 108 transport1[12,15] + pickup1[15] + [
+ qc267: - 108 transport1[12,15] + pickup1[15] + [
    - transport1[12,15] * pickup1[12] ] >= 0
- qc258: - 42 transport1[13,1] + pickup1[1] + [
+ qc268: - 42 transport1[13,1] + pickup1[1] + [
    - transport1[13,1] * pickup1[13] ] >= 0
- qc259: - 126 transport1[13,2] + pickup1[2] + [
+ qc269: - 126 transport1[13,2] + pickup1[2] + [
    - transport1[13,2] * pickup1[13] ] >= 0
- qc260: - 150 transport1[13,3] + pickup1[3] + [
+ qc270: - 150 transport1[13,3] + pickup1[3] + [
    - transport1[13,3] * pickup1[13] ] >= 0
- qc261: - 48 transport1[13,4] + pickup1[4] + [
+ qc271: - 48 transport1[13,4] + pickup1[4] + [
    - transport1[13,4] * pickup1[13] ] >= 0
- qc262: - 36 transport1[13,5] + pickup1[5] + [
+ qc272: - 36 transport1[13,5] + pickup1[5] + [
    - transport1[13,5] * pickup1[13] ] >= 0
- qc263: - 174 transport1[13,6] + pickup1[6] + [
+ qc273: - 174 transport1[13,6] + pickup1[6] + [
    - transport1[13,6] * pickup1[13] ] >= 0
- qc264: - 156 transport1[13,7] + pickup1[7] + [
+ qc274: - 156 transport1[13,7] + pickup1[7] + [
    - transport1[13,7] * pickup1[13] ] >= 0
- qc265: - 156 transport1[13,8] + pickup1[8] + [
+ qc275: - 156 transport1[13,8] + pickup1[8] + [
    - transport1[13,8] * pickup1[13] ] >= 0
- qc266: - 102 transport1[13,9] + pickup1[9] + [
+ qc276: - 102 transport1[13,9] + pickup1[9] + [
    - transport1[13,9] * pickup1[13] ] >= 0
- qc267: - 102 transport1[13,10] + pickup1[10] + [
+ qc277: - 102 transport1[13,10] + pickup1[10] + [
    - transport1[13,10] * pickup1[13] ] >= 0
- qc268: - 132 transport1[13,11] + pickup1[11] + [
+ qc278: - 132 transport1[13,11] + pickup1[11] + [
    - transport1[13,11] * pickup1[13] ] >= 0
- qc269: - 150 transport1[13,12] + pickup1[12] + [
+ qc279: - 150 transport1[13,12] + pickup1[12] + [
    - transport1[13,12] * pickup1[13] ] >= 0
- qc270: - 138 transport1[13,14] + pickup1[14] + [
+ qc280: - 138 transport1[13,14] + pickup1[14] + [
    - transport1[13,14] * pickup1[13] ] >= 0
- qc271: - 72 transport1[13,15] + pickup1[15] + [
+ qc281: - 72 transport1[13,15] + pickup1[15] + [
    - transport1[13,15] * pickup1[13] ] >= 0
- qc272: - 180 transport1[14,1] + pickup1[1] + [
+ qc282: - 180 transport1[14,1] + pickup1[1] + [
    - transport1[14,1] * pickup1[14] ] >= 0
- qc273: - 24 transport1[14,2] + pickup1[2] + [
+ qc283: - 24 transport1[14,2] + pickup1[2] + [
    - transport1[14,2] * pickup1[14] ] >= 0
- qc274: - 72 transport1[14,3] + pickup1[3] + [
+ qc284: - 72 transport1[14,3] + pickup1[3] + [
    - transport1[14,3] * pickup1[14] ] >= 0
- qc275: - 168 transport1[14,4] + pickup1[4] + [
+ qc285: - 168 transport1[14,4] + pickup1[4] + [
    - transport1[14,4] * pickup1[14] ] >= 0
- qc276: - 168 transport1[14,5] + pickup1[5] + [
+ qc286: - 168 transport1[14,5] + pickup1[5] + [
    - transport1[14,5] * pickup1[14] ] >= 0
- qc277: - 36 transport1[14,6] + pickup1[6] + [
+ qc287: - 36 transport1[14,6] + pickup1[6] + [
    - transport1[14,6] * pickup1[14] ] >= 0
- qc278: - 90 transport1[14,7] + pickup1[7] + [
+ qc288: - 90 transport1[14,7] + pickup1[7] + [
    - transport1[14,7] * pickup1[14] ] >= 0
- qc279: - 54 transport1[14,8] + pickup1[8] + [
+ qc289: - 54 transport1[14,8] + pickup1[8] + [
    - transport1[14,8] * pickup1[14] ] >= 0
- qc280: - 48 transport1[14,9] + pickup1[9] + [
+ qc290: - 48 transport1[14,9] + pickup1[9] + [
    - transport1[14,9] * pickup1[14] ] >= 0
- qc281: - 84 transport1[14,10] + pickup1[10] + [
+ qc291: - 84 transport1[14,10] + pickup1[10] + [
    - transport1[14,10] * pickup1[14] ] >= 0
- qc282: - 78 transport1[14,11] + pickup1[11] + [
+ qc292: - 78 transport1[14,11] + pickup1[11] + [
    - transport1[14,11] * pickup1[14] ] >= 0
- qc283: - 54 transport1[14,12] + pickup1[12] + [
+ qc293: - 54 transport1[14,12] + pickup1[12] + [
    - transport1[14,12] * pickup1[14] ] >= 0
- qc284: - 138 transport1[14,13] + pickup1[13] + [
+ qc294: - 138 transport1[14,13] + pickup1[13] + [
    - transport1[14,13] * pickup1[14] ] >= 0
- qc285: - 120 transport1[14,15] + pickup1[15] + [
+ qc295: - 120 transport1[14,15] + pickup1[15] + [
    - transport1[14,15] * pickup1[14] ] >= 0
- qc286: - 102 transport1[15,1] + pickup1[1] + [
+ qc296: - 102 transport1[15,1] + pickup1[1] + [
    - transport1[15,1] * pickup1[15] ] >= 0
- qc287: - 102 transport1[15,2] + pickup1[2] + [
+ qc297: - 102 transport1[15,2] + pickup1[2] + [
    - transport1[15,2] * pickup1[15] ] >= 0
- qc288: - 102 transport1[15,3] + pickup1[3] + [
+ qc298: - 102 transport1[15,3] + pickup1[3] + [
    - transport1[15,3] * pickup1[15] ] >= 0
- qc289: - 120 transport1[15,4] + pickup1[4] + [
+ qc299: - 120 transport1[15,4] + pickup1[4] + [
    - transport1[15,4] * pickup1[15] ] >= 0
- qc290: - 78 transport1[15,5] + pickup1[5] + [
+ qc300: - 78 transport1[15,5] + pickup1[5] + [
    - transport1[15,5] * pickup1[15] ] >= 0
- qc291: - 162 transport1[15,6] + pickup1[6] + [
+ qc301: - 162 transport1[15,6] + pickup1[6] + [
    - transport1[15,6] * pickup1[15] ] >= 0
- qc292: - 180 transport1[15,7] + pickup1[7] + [
+ qc302: - 180 transport1[15,7] + pickup1[7] + [
    - transport1[15,7] * pickup1[15] ] >= 0
- qc293: - 120 transport1[15,8] + pickup1[8] + [
+ qc303: - 120 transport1[15,8] + pickup1[8] + [
    - transport1[15,8] * pickup1[15] ] >= 0
- qc294: - 78 transport1[15,9] + pickup1[9] + [
+ qc304: - 78 transport1[15,9] + pickup1[9] + [
    - transport1[15,9] * pickup1[15] ] >= 0
- qc295: - 48 transport1[15,10] + pickup1[10] + [
+ qc305: - 48 transport1[15,10] + pickup1[10] + [
    - transport1[15,10] * pickup1[15] ] >= 0
- qc296: - 84 transport1[15,11] + pickup1[11] + [
+ qc306: - 84 transport1[15,11] + pickup1[11] + [
    - transport1[15,11] * pickup1[15] ] >= 0
- qc297: - 108 transport1[15,12] + pickup1[12] + [
+ qc307: - 108 transport1[15,12] + pickup1[12] + [
    - transport1[15,12] * pickup1[15] ] >= 0
- qc298: - 72 transport1[15,13] + pickup1[13] + [
+ qc308: - 72 transport1[15,13] + pickup1[13] + [
    - transport1[15,13] * pickup1[15] ] >= 0
- qc299: - 120 transport1[15,14] + pickup1[14] + [
+ qc309: - 120 transport1[15,14] + pickup1[14] + [
    - transport1[15,14] * pickup1[15] ] >= 0
+ qc310: - 150 transport1[1,0] + final1 + [ - transport1[1,0] * pickup1[1] ]
+   >= 0
+ qc311: - 90 transport1[2,0] + final1 + [ - transport1[2,0] * pickup1[2] ]
+   >= 0
+ qc312: - 66 transport1[3,0] + final1 + [ - transport1[3,0] * pickup1[3] ]
+   >= 0
+ qc313: - 162 transport1[4,0] + final1 + [ - transport1[4,0] * pickup1[4] ]
+   >= 0
+ qc314: - 126 transport1[5,0] + final1 + [ - transport1[5,0] * pickup1[5] ]
+   >= 0
+ qc315: - 144 transport1[6,0] + final1 + [ - transport1[6,0] * pickup1[6] ]
+   >= 0
+ qc316: - 192 transport1[7,0] + final1 + [ - transport1[7,0] * pickup1[7] ]
+   >= 0
+ qc317: - 90 transport1[8,0] + final1 + [ - transport1[8,0] * pickup1[8] ]
+   >= 0
+ qc318: - 72 transport1[9,0] + final1 + [ - transport1[9,0] * pickup1[9] ]
+   >= 0
+ qc319: - 36 transport1[10,0] + final1 + [ - transport1[10,0] * pickup1[10]
+   ] >= 0
+ qc320: - 48 transport1[11,0] + final1 + [ - transport1[11,0] * pickup1[11]
+   ] >= 0
+ qc321: - 78 transport1[12,0] + final1 + [ - transport1[12,0] * pickup1[12]
+   ] >= 0
+ qc322: - 114 transport1[13,0] + final1 + [
+   - transport1[13,0] * pickup1[13] ] >= 0
+ qc323: - 114 transport1[14,0] + final1 + [
+   - transport1[14,0] * pickup1[14] ] >= 0
+ qc324: - 48 transport1[15,0] + final1 + [ - transport1[15,0] * pickup1[15]
+   ] >= 0
 Bounds
 Binaries
  transport1[0,1] transport1[0,2] transport1[0,3] transport1[0,4]

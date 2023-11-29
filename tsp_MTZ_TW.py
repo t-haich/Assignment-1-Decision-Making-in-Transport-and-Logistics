@@ -132,8 +132,11 @@ def build_model(timeC1, timeC2, pickup1, pickup2, window):
         if transportC1[i, j].x:
             print ("({}, {}) from C1 was visited".format(i, j))
     print ("Final arrival time for C1 is {}".format(finalTime1.x))
-    #for i, j in linksC2:
-    #    if transportC2[i, j].x:    #        print ("({}, {}) from C2 was visited".format(i, j))
+    for i, j in linksC2:
+        if transportC2[i, j].x:    
+            print ("({}, {}) from C2 was visited".format(i, j))
+    print ("Final arrival time for C2 is {}".format(finalTime2.x))
+
 
 
 
