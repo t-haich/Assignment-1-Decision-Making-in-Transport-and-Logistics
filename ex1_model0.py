@@ -72,10 +72,6 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
 
     # Define decision variables
-    #usedConnectionsCtoP = model.addVars(prodFacs, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctop")
-    #usedConnectionsPtoS = model.addVars(superMarkts, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptos")
-    
-    
     transportCtoP = model.addVars(collSites, prodFacs, vtype=GRB.INTEGER, name="trans ctop") #We're missing type
 
     transportPtoS = model.addVars(prodFacs, superMarkts, vtype=GRB.INTEGER, name="trans ptos")
@@ -85,24 +81,11 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     # Set objective function
     model.modelSense = GRB.MINIMIZE
-    #Objective_Function = model.setObjective( (np.sum(np.sum(varCosts(c,p)*transportCtoP(c,p))for c in collSites for p in prodFacs))
-                                         #   + (np.sum(np.sum(varCosts(p,s)*transportPtoS(p,s))for p in prodFacs for s in superMarkts))     )
-    
-
-    # Print the objective function value
-    #print("Objective function value:", objective_function)
-    
-    
-    #fixed_cost_expr_ctop = gp.quicksum(usedConnectionsCtoP[p, c] * fixedCosts[p][c] for p in prodFacs for c in collSites)
-    #fixed_cost_expr_ptos = gp.quicksum(usedConnectionsPtoS[s, p] * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
 
     var_cost_expr_ctop = gp.quicksum(transportCtoP[c, p] * varCosts[c][p] for p in prodFacs for c in collSites)
     var_cost_expr_ptos = gp.quicksum(transportPtoS[p, s] * varCosts[p][s] for p in prodFacs for s in superMarkts)
 
     model.setObjective(var_cost_expr_ctop + var_cost_expr_ptos, GRB.MINIMIZE)
-
-    # Print the objective function value
-    #print("Objective function value:", Objective_Function)
     
 
     # Add constraints
@@ -131,31 +114,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
         for s in superMarkts:
             print("{} produced by {} for supermarket {}".format(transportPtoS[p,s].x, p, s))
 
-
-
-    #solve_model(model)
-
-    return ...
-
-
-def solve_model(model):
-    # Optimize the model
-    model.optimize()
-
-    # Call functions to output / print solutions if necessary
-   
-
-    # Save the model to a file (optional)
-    model.write("ex1_model0.lp")
-
-    # Close the Gurobi model
     model.close()
-
-
-def additional_function(input):
-    # add code here for your additional functions (e.g. sensitivity experiments)
-    data= null
-    build_model(data)
 
 
 if __name__ == "__main__":
@@ -165,8 +124,4 @@ if __name__ == "__main__":
     supplyCapDemandData, variableCostsData, fixedCostsData = read_data()
     
     build_model(supplyCapDemandData, variableCostsData, fixedCostsData)
-    # # Part (c): Increasing Yogurt Demand
-    # simulate_demand_increase_yogurt(data, increase_factor_range=np.arange(1.0, 2.6, 0.1))
 
-    # # Part (d): Changing Production Capacity
-    # simulate_capacity_change(data, facility="P2", new_capacity_range=np.arange(100, 200, 10))

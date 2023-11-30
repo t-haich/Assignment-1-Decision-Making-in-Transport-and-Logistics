@@ -83,10 +83,6 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
 
     # Define decision variables
-    #usedConnectionsCtoP = model.addVars(prodFacs, collSites, vtype=GRB.BINARY, obj=fixedCosts, name="used ctop")
-    #usedConnectionsPtoS = model.addVars(superMarkts, prodFacs, vtype=GRB.BINARY, obj=fixedCosts, name="used ptos")
-    
-    
     transportCtoP = model.addVars(collSites, prodFacs, vtype=GRB.INTEGER, name="trans ctop")
     #transportPtoS = model.addVars(prodFacs, superMarkts, vtype=GRB.INTEGER, name="trans ptos")
     transportPtoSMilk = model.addVars(prodFacs, superMarkts, vtype=GRB.INTEGER, name="trans ptos milk")
@@ -105,36 +101,20 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     # Set objective function
     model.modelSense = GRB.MINIMIZE
-    #Objective_Function = model.setObjective( (np.sum(np.sum(varCosts(c,p)*transportCtoP(c,p))for c in collSites for p in prodFacs))
-                                         #   + (np.sum(np.sum(varCosts(p,s)*transportPtoS(p,s))for p in prodFacs for s in superMarkts))     )
-    
-
-    # Print the objective function value
-    #print("Objective function value:", objective_function)
-    
-    
-    #fixed_cost_expr_ctop = gp.quicksum(usedConnectionsCtoP[p, c] * fixedCosts[p][c] for p in prodFacs for c in collSites)
-    #fixed_cost_expr_ptos = gp.quicksum(usedConnectionsPtoS[s, p] * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
 
     var_cost_expr_ctop = gp.quicksum(transportCtoP[c, p] * varCosts[c][p] for p in prodFacs for c in collSites)
-    #var_cost_expr_ptos = gp.quicksum(transportPtoS[p, s] * varCosts[p][s] for p in prodFacs for s in superMarkts)
     var_cost_expr_ptos = gp.quicksum((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) * varCosts[p][s] for p in prodFacs for s in superMarkts)
 
         #Transshipment
     var_cost_expr_ctoc = gp.quicksum(transportCtoC[c1, c2] * varCosts[c1][c2] for c1 in collSites for c2 in collSites)
-    #var_cost_expr_ptop = gp.quicksum(transportPtoP[p1, p2] * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
     var_cost_expr_ptop = gp.quicksum((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) * varCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
 
     model.setObjective(var_cost_expr_ctop + var_cost_expr_ptos + var_cost_expr_ctoc + var_cost_expr_ptop , GRB.MINIMIZE)
-
-    # Print the objective function value
-    #print("Objective function value:", Objective_Function)
     
 
     # Add constraints
-    model.addConstrs((transportCtoP.sum(c, '*') <= supply[c] for c in collSites), "Supply") ### How do we account for increased supply due to transhipments???
+    model.addConstrs((transportCtoP.sum(c, '*') <= supply[c] for c in collSites), "Supply")
     model.addConstrs((transportCtoP.sum('*', p) == (transportPtoSMilk.sum(p, '*') + transportPtoSYog.sum(p, '*') + transportPtoSCream.sum(p, '*')) for p in prodFacs), "Capacity")
-    #model.addConstrs((transportPtoS.sum('*', s) == sum(demand[s - len(supply) - len(capacity)]) for s in superMarkts), "Demand")
         # Capacity-Demand split into three products: milk, yogurt, cream.
     model.addConstrs((transportPtoSMilk.sum('*', s) == demand[s - len(supply) - len(capacity)][0] for s in superMarkts), "Demand Milk")
     model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
@@ -185,34 +165,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
         for s in superMarkts:
             print("{} milk, {} yogurt, and {} cream produced by {} for supermarket {}".format(transportPtoSMilk[p,s].x, transportPtoSYog[p,s].x, transportPtoSCream[p,s].x, p, s))
 
-
-
-
-
-    #solve_model(model)
-
-    return ...
-
-
-def solve_model(model):
-    # Optimize the model
-    model.optimize()
-
-    # Call functions to output / print solutions if necessary
-   
-
-    # Save the model to a file (optional)
-    model.write("ex1_model0.lp")
-
-    # Close the Gurobi model
     model.close()
-
-
-def additional_function(input):
-    # add code here for your additional functions (e.g. sensitivity experiments)
-    data= null
-    build_model(data)
-
 
 if __name__ == "__main__":
     # steer the running of the experiments. 
@@ -221,8 +174,3 @@ if __name__ == "__main__":
     supplyCapDemandData, variableCostsData, fixedCostsData = read_data()
     
     build_model(supplyCapDemandData, variableCostsData, fixedCostsData)
-    # # Part (c): Increasing Yogurt Demand
-    # simulate_demand_increase_yogurt(data, increase_factor_range=np.arange(1.0, 2.6, 0.1))
-
-    # # Part (d): Changing Production Capacity
-    # simulate_capacity_change(data, facility="P2", new_capacity_range=np.arange(100, 200, 10))

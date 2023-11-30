@@ -108,26 +108,7 @@ def build_model(timeC1, timeC2):
         if transportC2[i, j].x:
             print ("({}, {}) from C2 was visited".format(i, j))
 
-    print(subtour2)
-
-def solve_model(model):
-    # Optimize the model
-    model.optimize()
-
-    # Call functions to output / print solutions if necessary
-   
-
-    # Save the model to a file (optional)
-    model.write("tsp_DFJ.lp")
-
-    # Close the Gurobi model
     model.close()
-
-
-def additional_function(input):
-    # add code here for your additional functions (e.g. sensitivity experiments)
-    data= null
-    build_model(data)
 
 
 if __name__ == "__main__":

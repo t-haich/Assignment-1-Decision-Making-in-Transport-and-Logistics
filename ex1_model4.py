@@ -14,7 +14,9 @@ def read_data():
 
     fixedCostsData = pd.read_excel('fixedCosts.xlsx').values
 
-    return supplyCapDemandData, variableCostsData, fixedCostsData
+    supplyScenarios = pd.read_excel('supply_scenarios.xlsx').values
+
+    return supplyCapDemandData, variableCostsData, fixedCostsData, supplyScenarios
 
 def listToMatrix(data, valueIndex):
     matrix = []
@@ -30,9 +32,9 @@ def listToMatrix(data, valueIndex):
     return matrix
 
 
-def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
+def build_model(supplyCapDemandData, variableCostsData, fixedCostsData, supplyScenarios):
 
-    model = gp.Model("ex1_model3")
+    model = gp.Model("ex1_model4")
 
     # Define sets and parameters
     collSites = []
@@ -49,9 +51,9 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     for d in supplyCapDemandData:
         print(d)
-        if "C" in d[0]:
+        #if "C" in d[0]:
             #collSites.append(d[0])
-            supply.append(d[3])
+            #supply.append(d[3])
         if "P" in d[0]:
             #prodFacs.append(d[0])
             capacity.append(d[2])
@@ -67,9 +69,14 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
             #superMarkts.append(d[0])
             demand.append([d[4], d[5], d[6]])
     
-    collSites = range(len(supply))
-    prodFacs = range(len(supply), len(capacity) + len(supply))
-    superMarkts = range(len(supply) + len(capacity), len(demand) + len(supply) + len(capacity)) 
+    for i in range(2,len(supplyScenarios[0])):
+        supply.append([supplyScenarios[0][i], supplyScenarios[1][i], supplyScenarios[2][i]])
+
+
+    
+    collSites = range(len(supply[0]))
+    prodFacs = range(len(supply[0]), len(capacity) + len(supply[0]))
+    superMarkts = range(len(supply[0]) + len(capacity), len(demand) + len(supply[0]) + len(capacity)) 
     print(collSites)
     print(prodFacs)
     print(superMarkts)
@@ -106,7 +113,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
     # Set objective function
     model.modelSense = GRB.MINIMIZE
- 
+
     var_cost_expr_ctop = gp.quicksum(transportCtoP[c, p] * varCosts[c][p] + trucksCtoP[c, p] * fixedCosts[c][p] for p in prodFacs for c in collSites)
     var_cost_expr_ptos = gp.quicksum((transportPtoSMilk[p, s] + transportPtoSYog[p, s] + transportPtoSCream[p, s]) * varCosts[p][s] + trucksPtoS[p, s] * fixedCosts[p][s] for p in prodFacs for s in superMarkts)
 
@@ -115,22 +122,24 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     var_cost_expr_ptop = gp.quicksum((transportPtoPMilk[p1, p2] + transportPtoPYog[p1, p2] + transportPtoPCream[p1, p2]) * varCosts[p1][p2] + trucksPtoP[p1, p2] * fixedCosts[p1][p2] for p1 in prodFacs for p2 in prodFacs)
 
     model.setObjective(var_cost_expr_ctop + var_cost_expr_ptos + var_cost_expr_ctoc + var_cost_expr_ptop , GRB.MINIMIZE)
+    
 
     # Add constraints
-    model.addConstrs((transportCtoP.sum(c, '*') <= supply[c] for c in collSites), "Supply") ### How do we account for increased supply due to transhipments???
+    model.addConstrs((transportCtoP.sum(c, '*') <= supply[w][c] for c in collSites for w in range(len(supply))), "Supply") ### How do we account for increased supply due to transhipments???
     model.addConstrs((transportCtoP.sum('*', p) == (transportPtoSMilk.sum(p, '*') + transportPtoSYog.sum(p, '*') + transportPtoSCream.sum(p, '*')) for p in prodFacs), "Capacity")
         # Capacity-Demand split into three products: milk, yogurt, cream.
-    model.addConstrs((transportPtoSMilk.sum('*', s) == demand[s - len(supply) - len(capacity)][0] for s in superMarkts), "Demand Milk")
-    model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
-    model.addConstrs((transportPtoSCream.sum('*', s) == demand[s - len(supply) - len(capacity)][2] for s in superMarkts), "Demand Cream")
+    model.addConstrs((transportPtoSMilk.sum('*', s) == demand[s - len(supply[0]) - len(capacity)][0] for s in superMarkts), "Demand Milk")
+    model.addConstrs((transportPtoSYog.sum('*', s) == demand[s - len(supply[0]) - len(capacity)][1] for s in superMarkts), "Demand Yogurt")
+    model.addConstrs((transportPtoSCream.sum('*', s) == demand[s - len(supply[0]) - len(capacity)][2] for s in superMarkts), "Demand Cream")
 
-    model.addConstrs((transportCtoP.sum('*', p) <= capacity[p - len(supply)] for p in prodFacs), "Capacity limit")
-    model.addConstrs((transportPtoSMilk.sum(p, '*') <= capMilk[p - len(supply)] for p in prodFacs), "Capacity limit milk")
-    model.addConstrs((transportPtoSYog.sum(p, '*') <= capYog[p - len(supply)] for p in prodFacs), "Capacity limit yogurt")
-    model.addConstrs((transportPtoSCream.sum(p, '*') <= capCream[p - len(supply)] for p in prodFacs), "Capacity limit cream")
+    model.addConstrs((transportCtoP.sum('*', p) <= capacity[p - len(supply[0])] for p in prodFacs), "Capacity limit")
+    model.addConstrs((transportPtoSMilk.sum(p, '*') <= capMilk[p - len(supply[0])] for p in prodFacs), "Capacity limit milk")
+    model.addConstrs((transportPtoSYog.sum(p, '*') <= capYog[p - len(supply[0])] for p in prodFacs), "Capacity limit yogurt")
+    model.addConstrs((transportPtoSCream.sum(p, '*') <= capCream[p - len(supply[0])] for p in prodFacs), "Capacity limit cream")
 
     model.addConstrs((transportCtoP[c,p] >= 0 for c in collSites for p in prodFacs), "Transport C to P")
 
+    #model.addConstrs((transportPtoS[p,s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S")
     model.addConstrs((transportPtoSMilk[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Milk")
     model.addConstrs((transportPtoSYog[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Yog")
     model.addConstrs((transportPtoSCream[p, s] >= 0 for s in superMarkts for p in prodFacs), "Transport P to S Cream")
@@ -145,7 +154,7 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     model.update()
 
         # Save the model to a file (optional)
-    model.write("ex1_model3.lp")
+    model.write("ex1_model4.lp")
 
     model.optimize()
 
@@ -179,75 +188,12 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
     return obj
 
 
-def simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, increase_factor_range):
-    df = []
-    for i in increase_factor_range:
-        supplyCapDemandDataNew = supplyCapDemandData.copy()
-        for d in supplyCapDemandDataNew:
-            if "S" in d[0]:
-                d[5] *= i
-        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
-        df.append([i, obj])
-
-    df = pd.DataFrame(df)
-    return df
-
-
-
-def simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility, new_capacity_range):
-    df = []
-    for i in new_capacity_range:
-        supplyCapDemandDataNew = supplyCapDemandData.copy()
-        for d in supplyCapDemandDataNew:
-            if facility in d[0]:
-                d[2] += i
-        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
-        df.append([i, obj])
-
-    df = pd.DataFrame(df)
-    return df
-
-def simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData):
-    supplyScenarios = pd.read_excel('supply_scenarios.xlsx').values
-    df = []
-    for i in range(2,len(supplyScenarios[0])):
-        supplyCapDemandDataNew = supplyCapDemandData.copy()
-        for d in supplyCapDemandDataNew:
-            if supplyScenarios[0][0] in d[0]:
-                d[3] = supplyScenarios[0][i]
-            elif supplyScenarios[1][0] in d[0]:
-                d[3] = supplyScenarios[1][i]
-            elif supplyScenarios[2][0] in d[0]:
-                d[3] = supplyScenarios[2][i]
-        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
-        df.append([i, obj])
-
-    df = pd.DataFrame(df)
-    return df
-
-
-
 if __name__ == "__main__":
     # steer the running of the experiments. 
     # give detailed comments on how to run the code.
     # if the file contains answers to multiple questions, you can comment them out (see example below)
-    supplyCapDemandData, variableCostsData, fixedCostsData = read_data()
+    supplyCapDemandData, variableCostsData, fixedCostsData, supplyScenarios = read_data()
     
-    build_model(supplyCapDemandData, variableCostsData, fixedCostsData)
+    build_model(supplyCapDemandData, variableCostsData, fixedCostsData, supplyScenarios)
 
-    
-    # # Part (c): Increasing Yogurt Demand
-    df1 = simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, np.arange(1.0, 2.6, 0.1))
-
-    # # Part (d): Changing Production Capacity
-    df2 = simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility="P2", new_capacity_range=np.arange(100, 200, 10))
-
-    # # Part 1.4 (a)
-    df3 = simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData)
-
-
-    with pd.ExcelWriter('model3_sensitivity_results.xlsx') as writer:
-        df1.to_excel(writer, header=['Increase Factor', 'Cost'], sheet_name='simulate_demand_increase_yogurt')
-        df2.to_excel(writer, header=['New Capacity', 'Cost'], sheet_name='simulate_capacity_change')
-        df3.to_excel(writer, header=['Supply Scenario', 'Cost'], sheet_name='simulate_supply_change')
 

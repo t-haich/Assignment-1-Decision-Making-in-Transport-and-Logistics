@@ -137,27 +137,7 @@ def build_model(timeC1, timeC2, pickup1, pickup2, window):
             print ("({}, {}) from C2 was visited".format(i, j))
     print ("Final arrival time for C2 is {}".format(finalTime2.x))
 
-
-
-
-def solve_model(model):
-    # Optimize the model
-    model.optimize()
-
-    # Call functions to output / print solutions if necessary
-   
-
-    # Save the model to a file (optional)
-    model.write("tsp_MTZ_TW.lp")
-
-    # Close the Gurobi model
     model.close()
-
-
-def additional_function(input):
-    # add code here for your additional functions (e.g. sensitivity experiments)
-    data= null
-    build_model(data)
 
 
 if __name__ == "__main__":
