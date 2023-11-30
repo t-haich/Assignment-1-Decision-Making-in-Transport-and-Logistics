@@ -197,11 +197,13 @@ def build_model(supplyCapDemandData, variableCostsData, fixedCostsData):
 
 
 
+    obj = model.getObjective().getValue() if not model.status == gp.GRB.INFEASIBLE else -1
 
+    model.close()
+    return obj
 
     #solve_model(model)
 
-    return ...
 
 
 def solve_model(model):
@@ -220,29 +222,37 @@ def solve_model(model):
 
 def simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, increase_factor_range):
     # add code here for your additional functions (e.g. sensitivity experiments)
-    
+    df = []
     for i in increase_factor_range:
         supplyCapDemandDataNew = supplyCapDemandData.copy()
         for d in supplyCapDemandDataNew:
             if "S" in d[0]:
                 d[5] *= i
-        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        df.append([i, obj])
+
+    df = pd.DataFrame(df)
+    return df
+
 
 
 def simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility, new_capacity_range):
     # add code here for your additional functions (e.g. sensitivity experiments)
-    
+    df = []
     for i in new_capacity_range:
         supplyCapDemandDataNew = supplyCapDemandData.copy()
         for d in supplyCapDemandDataNew:
             if facility in d[0]:
                 d[2] += i
-        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        df.append([i, obj])
 
+    df = pd.DataFrame(df)
+    return df
 
 def simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData):
     supplyScenarios = pd.read_excel('supply_scenarios.xlsx').values
-
+    df = []
     for i in range(2,len(supplyScenarios[0])):
         supplyCapDemandDataNew = supplyCapDemandData.copy()
         for d in supplyCapDemandDataNew:
@@ -252,7 +262,11 @@ def simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsDat
                 d[3] = supplyScenarios[1][i]
             elif supplyScenarios[2][0] in d[0]:
                 d[3] = supplyScenarios[2][i]
-        build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        obj = build_model(supplyCapDemandDataNew, variableCostsData, fixedCostsData)
+        df.append([i, obj])
+
+    df = pd.DataFrame(df)
+    return df
 
 
 
@@ -266,10 +280,17 @@ if __name__ == "__main__":
 
     
     # # Part (c): Increasing Yogurt Demand
-    #simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, np.arange(1.0, 2.6, 0.1))
+    df1 = simulate_demand_increase_yogurt(supplyCapDemandData, variableCostsData, fixedCostsData, np.arange(1.0, 2.6, 0.1))
 
     # # Part (d): Changing Production Capacity
-    #simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility="P2", new_capacity_range=np.arange(100, 200, 10))
+    df2 = simulate_capacity_change(supplyCapDemandData, variableCostsData, fixedCostsData, facility="P2", new_capacity_range=np.arange(100, 200, 10))
 
     # # Part 1.4 (a)
-    simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData)
+    df3 = simulate_supply_change(supplyCapDemandData, variableCostsData, fixedCostsData)
+
+
+    with pd.ExcelWriter('model3_sensitivity_results.xlsx') as writer:
+        df1.to_excel(writer, header=['Increase Factor', 'Cost'], sheet_name='simulate_demand_increase_yogurt')
+        df2.to_excel(writer, header=['New Capacity', 'Cost'], sheet_name='simulate_capacity_change')
+        df3.to_excel(writer, header=['Supply Scenario', 'Cost'], sheet_name='simulate_supply_change')
+
